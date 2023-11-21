@@ -203,6 +203,8 @@ GameObject:
   - component: {fileID: 566634585}
   - component: {fileID: 566634584}
   - component: {fileID: 566634583}
+  - component: {fileID: 566634587}
+  - component: {fileID: 566634588}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -292,6 +294,43 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &566634587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566634582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a678ee702cc70499acc08ebd6cecf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pianoPrefabs:
+  - {fileID: 1613687613515605317, guid: fe22def1e9fd4064b872ce06d4f4b634, type: 3}
+  - {fileID: 1613687613515605317, guid: 4b349bf763c151145a20ff646cce16ff, type: 3}
+  - {fileID: 1613687613515605317, guid: d310753efdc3bca4e812dffd1dce917c, type: 3}
+  - {fileID: 1613687613515605317, guid: 8de29f0dc526c1742a760ef4b4a450f9, type: 3}
+  - {fileID: 1613687613515605317, guid: 119141f61798e2e4ba21f81caf063c1d, type: 3}
+  - {fileID: 1613687613515605317, guid: 872c9fc2bc4e5b94aaf82330552e183b, type: 3}
+  - {fileID: 1613687613515605317, guid: 2472c16f9cd4fe047867a6832170fe15, type: 3}
+  - {fileID: 1613687613515605317, guid: 705e8fb3deadbcd42894912d57d46795, type: 3}
+  - {fileID: 1613687613515605317, guid: c7c57f12b16dfad45a33c3069bcb494a, type: 3}
+  - {fileID: 1613687613515605317, guid: 3486dd1e5f680bf4d9f3033c52772f7c, type: 3}
+  - {fileID: 1613687613515605317, guid: 3896d91e10688c845ab9baa1f7614870, type: 3}
+  - {fileID: 1613687613515605317, guid: 9d4b6aa44ea3a3a41b05fd9ca72062cc, type: 3}
+--- !u!114 &566634588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566634582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea34b8ffa5929da419daabff8e6c6d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &802809202
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,9 +389,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pianoPrefab: {fileID: 1613687613515605317, guid: fe22def1e9fd4064b872ce06d4f4b634, type: 3}
-  batteryPrefab: {fileID: 7544119337391814559, guid: 0728fac69407a184c85ef8ed0633052a, type: 3}
-  guitarePrefab: {fileID: 3395089725093750241, guid: c05a6a1c6b9932949b58eac02ef52988, type: 3}
-  violonPrefab: {fileID: 4626834765506450507, guid: b07a351879879b844a2e4ab340edc78c, type: 3}
+  batteryPrefab: {fileID: 1613687613515605317, guid: c84eba3bd0acc00419ffe3faffb13bca, type: 3}
+  guitarePrefab: {fileID: 1613687613515605317, guid: ae35a7af8c2930f4b803ae9ee5a37c6f, type: 3}
+  violonPrefab: {fileID: 1613687613515605317, guid: b32a85999da396b4289050667933ad33, type: 3}
 --- !u!1 &928361289
 GameObject:
   m_ObjectHideFlags: 0
