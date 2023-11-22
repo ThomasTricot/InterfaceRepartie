@@ -49,6 +49,7 @@ public class InstrumentSpawner : MonoBehaviour
             canvas.worldCamera, 
             out Vector2 localPoint
         );
+        
 
         if (name == "")
         {
