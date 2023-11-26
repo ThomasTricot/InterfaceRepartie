@@ -1,15 +1,15 @@
 const WebSocket = require('ws');
+const server = new WebSocket.Server({ port: 8080 });
 
-function initializeWebSocket(server) {
-  const wss = new WebSocket.Server({ server });
+server.on('connection', socket => {
 
-  wss.on('connection', (ws) => {
-    ws.on('message', (message) => {
-      console.log('Received message:', message);
-    });
+  console.log('New client connected!');
+  socket.send('Connexion with server on port 8080');
 
-    ws.send('Connexion WebSocket établie');
+  socket.on('message', message => {
+    console.log(`Received message => ${message}`);
+    socket.send(`Server received this message and sent you back: ${message}`);
+
   });
-}
 
-module.exports = { initializeWebSocket };
+});
