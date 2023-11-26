@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hamsters xmlns="http://www.irit.fr/ICS/HAMSTERS/7.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Reproduire les musiques à refaire" version="7" xsi:schemaLocation="http://www.irit.fr/ICS/HAMSTERS/7.0 https://www.irit.fr/recherches/ICS/xsd/hamsters/v7/v7.xsd">
+    <nodes>
+        <task copy="false" id="t1" type="goal">
+            <graphics>
+                <graphic folded="false">
+                    <position x="227" y="51"/>
+                </graphic>
+            </graphics>
+            <operator id="o1" type="enable" knowledgeproceduraltype="">
+                <graphics>
+                    <graphic>
+                        <position x="194" y="162"/>
+                    </graphic>
+                </graphics>
+                <task copy="false" id="t6" type="interactive_input" knowledgeproceduraltype="">
+                    <graphics>
+                        <graphic folded="false">
+                            <position x="-210" y="261"/>
+                        </graphic>
+                    </graphics>
+                    <description>Ecouter une première fois les musiques sur les enceintes du tableau</description>
+                    <xlproperties/>
+                    <coreproperties>
+                        <categories>
+                            <category name="simulation">
+<property name="duration" value="false"/>
+<property name="iterative" value="0"/>
+<property name="optional" value="false"/>
+<property name="minexectime" value="0"/>
+<property name="maxexectime" value="0"/>
+                            </category>
+                            <category name="authority">
+<property name="responsibility" type="java.lang.Boolean" value="false"/>
+<property name="authority" type="java.lang.Boolean" value="false"/>
+                            </category>
+                            <category name="criticality">
+<property name="criticality" type="java.lang.Integer" value="0"/>
+                            </category>
+                        </categories>
+                    </coreproperties>
+                </task>
+                <operator id="o2" type="choice" knowledgeproceduraltype="">
+                    <graphics>
+                        <graphic>
+                            <position x="490" y="226"/>
+                        </graphic>
+                    </graphics>
+                    <task copy="false" id="t3" type="abstract" knowledgeproceduraltype="">
+                        <graphics>
+                            <graphic folded="false">
+<position x="121" y="429"/>
+                            </graphic>
+                        </graphics>
+                        <operator id="o3" type="enable" knowledgeproceduraltype="">
+                            <graphics>
+<graphic>
+    <position x="120" y="544"/>
+</graphic>
+                            </graphics>
+                            <task copy="false" id="t9" type="interactive_input" knowledgeproceduraltype="">
+<graphics>
+    <graphic folded="false">
+        <position x="127" y="602"/>
+    </graphic>
+</graphics>
+<operator id="o4" type="enable" knowledgeproceduraltype="">
+    <graphics>
+        <graphic>
+            <position x="336" y="657"/>
+        </graphic>
+    </graphics>
+    <task copy="false" id="t10" type="interactive_input" knowledgeproceduraltype="">
+        <graphics>
+            <graphic folded="false">
+                <position x="490" y="642"/>
+            </graphic>
+        </graphics>
+        <description>Appuyer sur le bouton valider</description>
+        <xlproperties/>
+        <coreproperties>
+            <categories>
+                <category name="simulation">
+                    <property name="duration" value="false"/>
+                    <property name="iterative" value="0"/>
+                    <property name="optional" value="false"/>
+                    <property name="minexectime" value="0"/>
+                    <property name="maxexectime" value="0"/>
+                </category>
+                <category name="authority">
+                    <property name="responsibility" type="java.lang.Boolean" value="false"/>
+                    <property name="authority" type="java.lang.Boolean" value="false"/>
+                </category>
+                <category name="criticality">
+                    <property name="criticality" type="java.lang.Integer" value="0"/>
+                </category>
+            </categories>
+        </coreproperties>
+    </task>
+</operator>
+<description>Poser l'objet "record"</description>
+<xlproperties/>
+<coreproperties>
+    <categories>
+        <category name="simulation">
+            <property name="duration" value="false"/>
+            <property name="iterative" value="0"/>
+            <property name="optional" value="false"/>
+            <property name="minexectime" value="0"/>
+            <property name="maxexectime" value="0"/>
+        </category>
+        <category name="authority">
+            <property name="responsibility" type="java.lang.Boolean" value="false"/>
+            <property name="authority" type="java.lang.Boolean" value="false"/>
+        </category>
+        <category name="criticality">
+            <property name="criticality" type="java.lang.Integer" value="0"/>
+        </category>
+    </categories>
+</coreproperties>
+                            </task>
+                        </operator>
+                        <description>Créer une musique</description>
+                        <xlproperties/>
+                        <coreproperties>
+                            <categories>
+<category name="simulation">
+    <property name="duration" value="false"/>
+    <property name="iterative" value="0"/>
+    <property name="optional" value="false"/>
+    <property name="minexectime" value="0"/>
+    <property name="maxexectime" value="0"/>
+</category>
+<category name="authority">
+    <property name="responsibility" type="java.lang.Boolean" value="false"/>
+    <property name="authority" type="java.lang.Boolean" value="false"/>
+</category>
+<category name="criticality">
+    <property name="criticality" type="java.lang.Integer" value="0"/>
+</category>
+                            </categories>
+                        </coreproperties>
+                    </task>
+                    <task copy="false" id="t7" type="interactive_input" knowledgeproceduraltype="">
+                        <graphics>
+                            <graphic folded="false">
+<position x="259" y="429"/>
+                            </graphic>
+                        </graphics>
+                        <description>Poser l’objet musique puis sélectionner celle à réécouter</description>
+                        <xlproperties/>
+                        <coreproperties>
+                            <categories>
+<category name="simulation">
+    <property name="duration" value="false"/>
+    <property name="iterative" value="0"/>
+    <property name="optional" value="false"/>
+    <property name="minexectime" value="0"/>
+    <property name="maxexectime" value="0"/>
+</category>
+<category name="authority">
+    <property name="responsibility" type="java.lang.Boolean" value="false"/>
+    <property name="authority" type="java.lang.Boolean" value="false"/>
+</category>
+<category name="criticality">
+    <property name="criticality" type="java.lang.Integer" value="0"/>
+</category>
+                            </categories>
+                        </coreproperties>
+                    </task>
+                    <task copy="false" id="t8" type="abstract" knowledgeproceduraltype="">
+                        <graphics>
+                            <graphic folded="false">
+<position x="629" y="429"/>
+                            </graphic>
+                        </graphics>
+                        <description>Répond à une question</description>
+                        <xlproperties/>
+                        <coreproperties>
+                            <categories>
+<category name="simulation">
+    <property name="duration" value="false"/>
+    <property name="iterative" value="0"/>
+    <property name="optional" value="false"/>
+    <property name="minexectime" value="0"/>
+    <property name="maxexectime" value="0"/>
+</category>
+<category name="authority">
+    <property name="responsibility" type="java.lang.Boolean" value="false"/>
+    <property name="authority" type="java.lang.Boolean" value="false"/>
+</category>
+<category name="criticality">
+    <property name="criticality" type="java.lang.Integer" value="0"/>
+</category>
+                            </categories>
+                        </coreproperties>
+                    </task>
+                </operator>
+            </operator>
+            <description>Reproduire les musiques à refaire</description>
+            <xlproperties/>
+            <coreproperties>
+                <categories>
+                    <category name="simulation">
+                        <property name="duration" value="false"/>
+                        <property name="iterative" value="0"/>
+                        <property name="optional" value="false"/>
+                        <property name="minexectime" value="0"/>
+                        <property name="maxexectime" value="0"/>
+                    </category>
+                    <category name="authority">
+                        <property name="responsibility" type="java.lang.Boolean" value="false"/>
+                        <property name="authority" type="java.lang.Boolean" value="false"/>
+                    </category>
+                    <category name="criticality">
+                        <property name="criticality" type="java.lang.Integer" value="0"/>
+                    </category>
+                </categories>
+            </coreproperties>
+        </task>
+    </nodes>
+    <datas/>
+    <errors/>
+    <security/>
+    <parameters/>
+    <instancevalues/>
+    <parametersdefinitions/>
+    <mainproperties>
+        <property name="timemanagement" type="fr.irit.ics.circus.hamsters.api.TimeManagement" value="NORMAL"/>
+    </mainproperties>
+</hamsters>
