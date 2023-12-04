@@ -1,3 +1,4 @@
+using Script;
 using UnityEngine;
 
 public class PianoMoving : MonoBehaviour
@@ -20,7 +21,6 @@ public class PianoMoving : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            // Instanciez le prefab de piano
             piano = GameObject.Find("pianoPrefab0");
             if (piano == null)
             {
@@ -28,12 +28,11 @@ public class PianoMoving : MonoBehaviour
                 return;
             }
 
-            // Assurez-vous que l'objet instancié utilise un RectTransform
             RectTransform pianoRectTransform = piano.GetComponent<RectTransform>();
             if (pianoRectTransform != null)
             {
-                // Positionnez le piano en (0, 0) localement dans le canvas
-                pianoRectTransform.localPosition = Vector2.zero;
+
+                pianoRectTransform.localPosition = CoordConvertor.Convert(0.25f, 0.75f);
             }
             else
             {
