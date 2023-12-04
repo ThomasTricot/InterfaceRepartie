@@ -1,0 +1,39 @@
+.question-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.question-text {
+    font-size: 24px;
+}
+
+.response {
+    width: 150px;
+    height: 100px;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.response-label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.response-text {
+    font-size: 16px;
+}
+
+/* Media query for layout on larger screens */
+@media (min-width: 600px) {
+    .responses {
+        display: block;
+    }
+
+    .response {
+        float: left;
+        width: calc(50% - 20px);
+    }
+}

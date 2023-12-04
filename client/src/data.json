@@ -1,0 +1,9 @@
+{
+    "question": "Quelle est la capitale de la France ?",
+    "answers": {
+        "A": "Paris",
+        "B": "Lyon",
+        "C": "Marseille",
+        "D": "Toulouse"
+    }
+}
