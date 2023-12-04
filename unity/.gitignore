@@ -12,6 +12,8 @@
 /dataSources/
 /dataSources.local.xml
 
-
 .DS_Store
 Thumbs.db
+
+# Unity specific
+/Library/
