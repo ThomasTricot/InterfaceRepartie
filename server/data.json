@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Qui est le compositeur de la 5ème symphonie de Beethoven ?",
+        "answers": {
+            "A": "Wolfgang Amadeus Mozart",
+            "B": "Johann Sebastian Bach",
+            "C": "Ludwig van Beethoven",
+            "D": "Frédéric Chopin"
+        },
+        "correctAnswer": "C"
+    },
+    {
+        "question": "Quel groupe a enregistré l'album 'Dark Side of the Moon' ?",
+        "answers": {
+            "A": "The Beatles",
+            "B": "Pink Floyd",
+            "C": "Led Zeppelin",
+            "D": "The Rolling Stones"
+        },
+        "correctAnswer": "B"
+    },
+    {
+        "question": "En quelle année Michael Jackson a-t-il sorti l'album 'Thriller' ?",
+        "answers": {
+            "A": "1978",
+            "B": "1982",
+            "C": "1987",
+            "D": "1991"
+        },
+        "correctAnswer": "B"
+    },
+    {
+        "question": "Quel instrument est principalement associé à Louis Armstrong ?",
+        "answers": {
+            "A": "Saxophone",
+            "B": "Piano",
+            "C": "Trompette",
+            "D": "Violon"
+        },
+        "correctAnswer": "C"
+    },
+    {
+        "question": "Qui a écrit la chanson 'Imagine' ?",
+        "answers": {
+            "A": "Elton John",
+            "B": "John Lennon",
+            "C": "Bob Dylan",
+            "D": "David Bowie"
+        },
+        "correctAnswer": "B"
+    }
+]

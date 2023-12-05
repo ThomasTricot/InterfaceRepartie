@@ -7,14 +7,22 @@
     font-size: 24px;
 }
 
+.responses {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
 .response {
-    width: 150px;
+    width: calc(50% - 20px); /* Ajuster en fonction de la marge */
     height: 100px;
     border: 1px solid black;
     margin: 10px;
     padding: 10px;
     text-align: center;
     cursor: pointer;
+    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
 }
 
 .response-label {
@@ -26,14 +34,9 @@
     font-size: 16px;
 }
 
-/* Media query for layout on larger screens */
+/* Ajustement pour les écrans plus larges, si nécessaire */
 @media (min-width: 600px) {
-    .responses {
-        display: block;
-    }
-
     .response {
-        float: left;
-        width: calc(50% - 20px);
+        width: calc(50% - 20px); /* Ajustez la largeur ici si nécessaire */
     }
 }

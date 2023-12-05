@@ -7,28 +7,33 @@ const App = () => {
     const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
     const [socket, setSocket] = useState(null);
 
-    useEffect(() => {
+    const handleClick = () => {
         const newSocket = new WebSocket('ws://localhost:8080');
 
         newSocket.onmessage = (event) => {
             console.log("Received data:", event.data);
             try {
                 const data = JSON.parse(event.data);
-                if (data.question) {
-                    console.log("2");
-                    setQuestionData(data);
-                } else if (data.answer) {
-                    console.log("3");
-
-                    setSelectedAnswer(data.answer);
-                    setIsAnswerCorrect(data.isCorrect);
+                switch (data.type) {
+                    case 'question':
+                        setQuestionData(data.question);
+                        setIsAnswerCorrect(null);
+                        break;
+                    case 'answerResult':
+                        setSelectedAnswer(data.answer);
+                        setIsAnswerCorrect(data.isCorrect);
+                        break;
+                    default:
+                        console.error('Unrecognized message type:', data.type);
                 }
             } catch (error) {
                 console.error('Error parsing JSON:', error);
             }
         };
 
-        newSocket.onopen = () => console.log('Connected to server');
+        newSocket.onopen = () => {
+            newSocket.send(JSON.stringify({ type: 'requestQuestion' }));
+        };
         newSocket.onclose = () => console.log('Disconnected from server');
         newSocket.onerror = (error) => console.log('WebSocket error:', error);
 
@@ -36,7 +41,7 @@ const App = () => {
         setSocket(newSocket);
 
         return () => newSocket.close();
-    }, []);
+    };
 
     return (
         <div className="App">
@@ -45,6 +50,7 @@ const App = () => {
                 selectedAnswer={selectedAnswer}
                 isAnswerCorrect={isAnswerCorrect}
             />
+            <button onClick={handleClick}>Connect to WebSocket</button>        
         </div>
     );
 };

@@ -1,10 +1,18 @@
 let socket;
+let currentQuestionId;
 
 document.querySelector('#connect').onclick = () => {
     socket = new WebSocket('ws://localhost:8080');
 
     socket.onmessage = ({ data }) => {
-        console.log('Feedback from quiz: ', data); // Affiche si la réponse est correcte ou non
+        console.log('Feedback from quiz: ', data);
+        const message = JSON.parse(data);
+        
+        if (message.type === 'question') {
+            currentQuestionId = message.question.questionId;
+        } else if (message.type === 'answerResult') {
+            console.log('Votre réponse est :', message.isCorrect ? 'Correcte' : 'Incorrecte');
+        }
     };
 
     socket.onopen = () => {
@@ -18,7 +26,7 @@ document.querySelector('#connect').onclick = () => {
 
 const sendAnswer = (answer) => {
     if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(answer);
+        socket.send(JSON.stringify({ type: 'submitAnswer', answer: answer, questionId: currentQuestionId }));
     } else {
         console.log('Socket is not open.');
     }

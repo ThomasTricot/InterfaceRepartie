@@ -4,7 +4,7 @@ import './question.css';
 const Response = ({ label, text, isSelected, isCorrect }) => {
     const responseStyle = isSelected
         ? { backgroundColor: isCorrect ? 'green' : 'red' }
-        : {};
+        : { backgroundColor: 'grey'};
 
     return (
         <div className="response" style={responseStyle}>

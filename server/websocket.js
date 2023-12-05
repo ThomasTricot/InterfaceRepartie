@@ -1,5 +1,10 @@
 const WebSocket = require('ws');
 const server = new WebSocket.Server({ port: 8080 });
+const fs = require('fs');
+const { json } = require('express');
+
+const questions = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
 let clientId = 0;
 let clients = {};
 
@@ -8,44 +13,40 @@ server.on('connection', socket => {
   clients[currentClientId] = socket;
   console.log('New client connected with ID:', currentClientId);
 
-  const questionData = {
-    question: "Quelle est la capitale de la France ?",
-    answers: {
-      A: "Paris",
-      B: "Lyon",
-      C: "Marseille",
-      D: "Toulouse"
-    }
-  };
-
-  socket.send(JSON.stringify(questionData));
-
   socket.on('message', message => {
-    
-    let isCorrect = false;
-    const correctAnswer = "A";
+    const data = JSON.parse(message.toString());
+    let response;
 
-    const receivedMessage = message.toString();
-    console.log(receivedMessage);
-
-    if (receivedMessage === correctAnswer) {
-      isCorrect = true;
+    if (data.type === 'requestQuestion') {
+      const questionData = getRandomQuestion();
+      response = {
+        type: 'question',
+        question: questionData,
+      };
+    } else if (data.type === 'submitAnswer') {
+        const isCorrect = data.answer === questions[data.questionId].correctAnswer;
+        response = {
+          type: 'answerResult',
+          answer: data.answer,
+          isCorrect: isCorrect
+      };
     }
-
-    const response = {
-      answer: receivedMessage,
-      isCorrect: isCorrect
-    };
 
     Object.keys(clients).forEach(id => {
       clients[id].send(JSON.stringify(response));
-      console.log(id);
     });
-  
-  });
+});
 
   socket.onclose = () => {
     delete clients[currentClientId];
     console.log('Client disconnected', currentClientId);
   };
 });
+
+function getRandomQuestion() {
+  const randomIndex = Math.floor(Math.random() * questions.length);
+  return {
+    questionId: randomIndex,
+    ...questions[randomIndex]
+  };
+}
