@@ -1,2 +1,4 @@
 # Unity specific
 /unity/Library/
+
+.DS_Store

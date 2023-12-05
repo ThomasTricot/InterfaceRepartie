@@ -1,8 +1,12 @@
 const WebSocket = require('ws');
 const server = new WebSocket.Server({ port: 8080 });
+let clientId = 0;
+let clients = {};
 
 server.on('connection', socket => {
-  console.log('New client connected!');
+  const currentClientId = ++clientId;
+  clients[currentClientId] = socket;
+  console.log('New client connected with ID:', currentClientId);
 
   const questionData = {
     question: "Quelle est la capitale de la France ?",
@@ -33,10 +37,15 @@ server.on('connection', socket => {
       isCorrect: isCorrect
     };
 
-    socket.send(JSON.stringify(response));
+    Object.keys(clients).forEach(id => {
+      clients[id].send(JSON.stringify(response));
+      console.log(id);
+    });
+  
   });
 
   socket.onclose = () => {
-    console.log('Client disconnected');
+    delete clients[currentClientId];
+    console.log('Client disconnected', currentClientId);
   };
 });
