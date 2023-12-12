@@ -18,6 +18,7 @@ const App = () => {
                     case 'question':
                         setQuestionData(data.question);
                         setIsAnswerCorrect(null);
+                        setSelectedAnswer(null);
                         break;
                     case 'answerResult':
                         setSelectedAnswer(data.answer);
@@ -45,12 +46,12 @@ const App = () => {
 
     return (
         <div className="App">
+            <button onClick={handleClick}>Question</button> 
             <Question 
                 questionData={questionData} 
                 selectedAnswer={selectedAnswer}
                 isAnswerCorrect={isAnswerCorrect}
-            />
-            <button onClick={handleClick}>Connect to WebSocket</button>        
+            />       
         </div>
     );
 };

@@ -6,8 +6,10 @@ const Response = ({ label, text, isSelected, isCorrect }) => {
         ? { backgroundColor: isCorrect ? 'green' : 'red' }
         : { backgroundColor: 'grey'};
 
+    const responseClass = `response ${isSelected ? 'selected' : ''}`;
+
     return (
-        <div className="response" style={responseStyle}>
+        <div className={responseClass} style={responseStyle}>
             <div className="response-label">{label}</div>
             <div className="response-text">{text}</div>
         </div>

@@ -24,7 +24,8 @@ server.on('connection', socket => {
         question: questionData,
       };
     } else if (data.type === 'submitAnswer') {
-        const isCorrect = data.answer === questions[data.questionId].correctAnswer;
+        console.log('Received answer from client', currentClientId, ':', data);
+        const isCorrect = data.questionId ? (data.answer === questions[data.questionId].correctAnswer) : false;
         response = {
           type: 'answerResult',
           answer: data.answer,

@@ -6,6 +6,7 @@ document.querySelector('#connect').onclick = () => {
 
     socket.onmessage = ({ data }) => {
         console.log('Feedback from quiz: ', data);
+        console.log('Current question ID: ', currentQuestionId);
         const message = JSON.parse(data);
         
         if (message.type === 'question') {

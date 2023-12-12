@@ -1,10 +1,16 @@
 .question-container {
     text-align: center;
     margin-top: 50px;
+    color: #333; /* Couleur de texte moderne */
 }
 
 .question-text {
-    font-size: 24px;
+    font-size: 28px;
+    font-family: 'Open Sans', sans-serif;
+    color: #2a2a2a;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .responses {
@@ -15,14 +21,21 @@
 }
 
 .response {
-    width: calc(50% - 20px); /* Ajuster en fonction de la marge */
+    width: calc(50% - 20px);
     height: 100px;
-    border: 1px solid black;
+    border: 1px solid #ddd;
     margin: 10px;
     padding: 10px;
     text-align: center;
     cursor: pointer;
-    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.response.selected {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: scale(1.02);
 }
 
 .response-label {
@@ -34,9 +47,8 @@
     font-size: 16px;
 }
 
-/* Ajustement pour les écrans plus larges, si nécessaire */
-@media (min-width: 600px) {
+@media (max-width: 600px) {
     .response {
-        width: calc(50% - 20px); /* Ajustez la largeur ici si nécessaire */
+        width: calc(100% - 20px); /* Pour trois colonnes sur de plus grands écrans */
     }
 }
