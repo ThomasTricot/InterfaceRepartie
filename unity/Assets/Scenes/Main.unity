@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 802809203}
   - component: {fileID: 802809204}
   - component: {fileID: 802809205}
+  - component: {fileID: 802809206}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -405,6 +406,19 @@ MonoBehaviour:
   batteryPrefab: {fileID: 1613687613515605317, guid: c84eba3bd0acc00419ffe3faffb13bca, type: 3}
   guitarePrefab: {fileID: 1613687613515605317, guid: ae35a7af8c2930f4b803ae9ee5a37c6f, type: 3}
   violonPrefab: {fileID: 1613687613515605317, guid: b32a85999da396b4289050667933ad33, type: 3}
+  reponsePrefab: {fileID: 1613687613515605317, guid: 6690ff67efd5d9e47830ebced273033d, type: 3}
+--- !u!114 &802809206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802809202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ca216ec3d71224fa0b479bd12d2d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928361289
 GameObject:
   m_ObjectHideFlags: 0

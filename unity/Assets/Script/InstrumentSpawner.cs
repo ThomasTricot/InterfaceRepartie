@@ -6,9 +6,12 @@ public class InstrumentSpawner : MonoBehaviour
     public GameObject batteryPrefab;
     public GameObject guitarePrefab;
     public GameObject violonPrefab;
+
     private Canvas canvas;
     private PianoChangeNote pianoChangeNote;
     private string name;
+
+    public GameObject reponsePrefab;
 
     void Start()
     {
@@ -38,6 +41,11 @@ public class InstrumentSpawner : MonoBehaviour
             name = "violonPrefab0";
             SpawnInstrumentAtMouse(violonPrefab);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            name = "reponsePrefab0"; // Nom temporaire pour l'objet "réponse"
+            SpawnReponseAtMouse(reponsePrefab); // Utilisez la méthode existante pour créer l'objet
+        }
     }
 
     void SpawnInstrumentAtMouse(GameObject instrumentPrefab)
@@ -59,6 +67,22 @@ public class InstrumentSpawner : MonoBehaviour
         GameObject instrument = Instantiate(instrumentPrefab, canvas.transform);
         instrument.name = name;
         RectTransform rectTransform = instrument.GetComponent<RectTransform>();
+        rectTransform.localPosition = localPoint;
+    }
+
+    void SpawnReponseAtMouse(GameObject reponsePrefab)
+    {
+        Vector2 screenMousePos = Input.mousePosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.GetComponent<RectTransform>(),
+            screenMousePos,
+            canvas.worldCamera,
+            out Vector2 localPoint
+        );
+
+        GameObject reponse = Instantiate(reponsePrefab, canvas.transform);
+        reponse.name = "reponsePrefab0";
+        RectTransform rectTransform = reponse.GetComponent<RectTransform>();
         rectTransform.localPosition = localPoint;
     }
 }
