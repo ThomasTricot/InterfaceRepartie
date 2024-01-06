@@ -1,34 +1,32 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class GameController : MonoBehaviour
 {
+    private bool isSoundOn = true;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(GetDataFromAPI());
+            ToggleSound();
         }
     }
 
-    IEnumerator GetDataFromAPI()
+    void ToggleSound()
     {
-        string url = "http://localhost:3000/api/data/test";
+        isSoundOn = !isSoundOn;
 
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
         {
-            // Envoi de la requête et attente de la réponse
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.isNetworkError || webRequest.isHttpError)
+            if (isSoundOn)
             {
-                Debug.Log("Erreur : " + webRequest.error);
+                audioSource.UnPause(); 
             }
             else
             {
-                // Afficher la réponse
-                Debug.Log("Réponse reçue: " + webRequest.downloadHandler.text);
+                audioSource.Pause();
             }
         }
     }

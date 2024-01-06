@@ -90,6 +90,8 @@ public class InstrumentSpawner : MonoBehaviour
         instrument.name = instrumentName;
         RectTransform rectTransform = instrument.GetComponent<RectTransform>();
         rectTransform.localPosition = localPoint;
+        
+        RestartAllAudioSources();
     }
     
 
@@ -107,5 +109,15 @@ public class InstrumentSpawner : MonoBehaviour
         reponse.name = "reponsePrefab0";
         RectTransform rectTransform = reponse.GetComponent<RectTransform>();
         rectTransform.localPosition = localPoint;
+    }
+    
+    private static void RestartAllAudioSources()
+    {
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.Stop();
+            audioSource.Play();
+        }
     }
 }
