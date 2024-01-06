@@ -7,9 +7,15 @@ using OscJack;
 public class OSC : MonoBehaviour
 {
     private OscServer server;
+    
+    public static float StaticX { get; private set; }
+    public static float StaticY { get; private set; }
 
     void Start()
     {
+        
+        Debug.Log("OSC INITIALISED");
+
         server = new OscServer(3333);
 
         server.MessageDispatcher.AddCallback("/tuio/2Dcur", (string address, OscDataHandle data) => {
@@ -46,12 +52,13 @@ public class OSC : MonoBehaviour
             float Y = data.GetElementAsFloat(5);
             float m = data.GetElementAsFloat(6);
 
-            Debug.Log($"2Dcur - Session: {s}, Position: ({x}, {y}), Velocity: ({X}, {Y}), MotionAcceleration: {m}");
+            // Debug.Log($"2Dcur - Session: {s}, Position: ({x}, {y}), Velocity: ({X}, {Y}), MotionAcceleration: {m}");
+            
         }
         else if (command == "fseq")
         {
             int fseq = data.GetElementAsInt(1);
-            Debug.Log("Frame Sequence: " + fseq);
+            // Debug.Log("Frame Sequence: " + fseq);
         }
     }
 
@@ -71,12 +78,15 @@ public class OSC : MonoBehaviour
             float m = data.GetElementAsFloat(9);
             float r = data.GetElementAsFloat(10);
 
-            Debug.Log($"2Dobj - Session: {s}, ClassId: {i}, Position: ({x}, {y}), Angle: {a}, Velocity: ({X}, {Y}, {A}), MotionAcceleration: {m}, RotationAcceleration: {r}");
+            // Debug.Log($"2Dobj - Session: {s}, ClassId: {i}, Position: ({x}, {y}), Angle: {a}, Velocity: ({X}, {Y}, {A}), MotionAcceleration: {m}, RotationAcceleration: {r}");
+            StaticX = x;
+            StaticY = y;
+            // Debug.Log(StaticX + "  " + StaticY);
         }
         else if (command == "fseq")
         {
             int fseq = data.GetElementAsInt(1);
-            Debug.Log("Frame Sequence: " + fseq);
+            // Debug.Log("Frame Sequence: " + fseq);
         }
     }
 }

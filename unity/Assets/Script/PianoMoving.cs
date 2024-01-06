@@ -1,5 +1,6 @@
 using Script;
 using UnityEngine;
+using Vector2 = System.Numerics.Vector2;
 
 public class PianoMoving : MonoBehaviour
 {
@@ -15,29 +16,35 @@ public class PianoMoving : MonoBehaviour
         {
             Debug.LogError("Canvas component not found on the GameObject");
         }
+        
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        float x = OSC.StaticX;
+        float y = OSC.StaticY;
+        
+        piano = GameObject.Find("pianoPrefab0");
+
+        if (x != 0 && y != 0 && piano == null)
         {
-            piano = GameObject.Find("pianoPrefab0");
-            if (piano == null)
-            {
-                Debug.LogError("pianoPrefab not found in the scene");
-                return;
-            }
+            InstrumentSpawner.SpawnPianoAt(CoordConvertor.Convert(x, y));
+        }
+        
+        if (piano == null)
+        {
+            // Debug.LogError("pianoPrefab not found in the scene");
+            return;
+        }
 
-            RectTransform pianoRectTransform = piano.GetComponent<RectTransform>();
-            if (pianoRectTransform != null)
-            {
-
-                pianoRectTransform.localPosition = CoordConvertor.Convert(0.25f, 0.75f);
-            }
-            else
-            {
-                Debug.LogError("The piano prefab does not have a RectTransform component.");
-            }
+        RectTransform pianoRectTransform = piano.GetComponent<RectTransform>();
+        if (pianoRectTransform != null)
+        {
+            pianoRectTransform.localPosition = CoordConvertor.Convert(x, y);
+        }
+        else
+        {
+            Debug.LogError("The piano prefab does not have a RectTransform component.");
         }
     }
 }

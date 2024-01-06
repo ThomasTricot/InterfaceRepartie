@@ -7,11 +7,28 @@ public class InstrumentSpawner : MonoBehaviour
     public GameObject guitarePrefab;
     public GameObject violonPrefab;
 
-    private Canvas canvas;
+    private static Canvas canvas;
     private PianoChangeNote pianoChangeNote;
     private string name;
 
     public GameObject reponsePrefab;
+
+    public static InstrumentSpawner Instance { get; private set; }
+
+    void Awake()
+    {
+        // Assignation du singleton
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     void Start()
     {
@@ -21,54 +38,60 @@ public class InstrumentSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            name = "pianoPrefab0";
-            SpawnInstrumentAtMouse(pianoPrefab);
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            name = "batteryPrefab0";
-            SpawnInstrumentAtMouse(batteryPrefab);
-        }
-        else if (Input.GetKeyDown(KeyCode.G))
-        {
-            name = "guitarePrefab0";
-            SpawnInstrumentAtMouse(guitarePrefab);
-        }
-        else if (Input.GetKeyDown(KeyCode.V))
-        {
-            name = "violonPrefab0";
-            SpawnInstrumentAtMouse(violonPrefab);
-        }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            name = "reponsePrefab0"; // Nom temporaire pour l'objet "réponse"
-            SpawnReponseAtMouse(reponsePrefab); // Utilisez la méthode existante pour créer l'objet
+            name = "reponsePrefab0"; // Nom temporaire pour l'objet "rï¿½ponse"
+            SpawnReponseAtMouse(reponsePrefab); // Utilisez la mï¿½thode existante pour crï¿½er l'objet
         }
     }
 
-    void SpawnInstrumentAtMouse(GameObject instrumentPrefab)
+    public static void SpawnPianoAt(Vector2 screenPosition)
     {
-        Vector2 screenMousePos = Input.mousePosition;
+        if (Instance != null)
+        {
+            SpawnInstrumentAt(screenPosition, Instance.pianoPrefab, "pianoPrefab0");
+        }
+    }
+
+    public static void SpawnBatteryAt(Vector2 screenPosition)
+    {
+        if (Instance != null)
+        {
+            SpawnInstrumentAt(screenPosition, Instance.batteryPrefab, "batteryPrefab0");
+        }
+    }
+
+    public static void SpawnGuitareAt(Vector2 screenPosition)
+    {
+        if (Instance != null)
+        {
+            SpawnInstrumentAt(screenPosition, Instance.guitarePrefab, "guitarePrefab0");
+        }
+    }
+
+    public static void SpawnViolonAt(Vector2 screenPosition)
+    {
+        if (Instance != null)
+        {
+            SpawnInstrumentAt(screenPosition, Instance.violonPrefab, "violonPrefab0");
+        }
+    }
+
+    private static void SpawnInstrumentAt(Vector2 screenPosition, GameObject instrumentPrefab, string instrumentName)
+    {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.GetComponent<RectTransform>(), 
-            screenMousePos, 
-            canvas.worldCamera, 
+            canvas.GetComponent<RectTransform>(),
+            screenPosition,
+            canvas.worldCamera,
             out Vector2 localPoint
         );
-        
 
-        if (name == "")
-        {
-            return;
-        }
-        
         GameObject instrument = Instantiate(instrumentPrefab, canvas.transform);
-        instrument.name = name;
+        instrument.name = instrumentName;
         RectTransform rectTransform = instrument.GetComponent<RectTransform>();
         rectTransform.localPosition = localPoint;
     }
+    
 
     void SpawnReponseAtMouse(GameObject reponsePrefab)
     {
