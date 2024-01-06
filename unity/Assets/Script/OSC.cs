@@ -7,9 +7,9 @@ using OscJack;
 public class OSC : MonoBehaviour
 {
     private OscServer server;
-    
-    public static float StaticX { get; private set; }
-    public static float StaticY { get; private set; }
+
+    public static Dictionary<int, Vector2> InstrumentPositions = new Dictionary<int, Vector2>();
+
 
     void Start()
     {
@@ -45,6 +45,7 @@ public class OSC : MonoBehaviour
         string command = data.GetElementAsString(0);
         if (command == "set")
         {
+            
             float s = data.GetElementAsFloat(1);
             float x = data.GetElementAsFloat(2);
             float y = data.GetElementAsFloat(3);
@@ -68,7 +69,9 @@ public class OSC : MonoBehaviour
         if (command == "set")
         {
             float s = data.GetElementAsFloat(1);
-            float i = data.GetElementAsFloat(2);
+            
+            int i = (int)data.GetElementAsFloat(2);
+            
             float x = data.GetElementAsFloat(3);
             float y = data.GetElementAsFloat(4);
             float a = data.GetElementAsFloat(5);
@@ -79,14 +82,21 @@ public class OSC : MonoBehaviour
             float r = data.GetElementAsFloat(10);
 
             // Debug.Log($"2Dobj - Session: {s}, ClassId: {i}, Position: ({x}, {y}), Angle: {a}, Velocity: ({X}, {Y}, {A}), MotionAcceleration: {m}, RotationAcceleration: {r}");
-            StaticX = x;
-            StaticY = y;
-            // Debug.Log(StaticX + "  " + StaticY);
+            InstrumentPositions[i] = new Vector2(x, y);
         }
         else if (command == "fseq")
         {
             int fseq = data.GetElementAsInt(1);
             // Debug.Log("Frame Sequence: " + fseq);
         }
+    }
+    
+    public static Vector2 GetInstrumentPosition(int instrumentId)
+    {
+        if (InstrumentPositions.TryGetValue(instrumentId, out Vector2 position))
+        {
+            return position;
+        }
+        return Vector2.zero; // Retourner une valeur par défaut si l'ID n'est pas trouvé
     }
 }
