@@ -1,7 +1,7 @@
 let socket;
 let currentQuestionId;
 
-let id=0;
+let id=2;
 let currentTable;
 
 document.querySelector('#connect').onclick = () => {
@@ -37,10 +37,19 @@ const sendAnswer = (answer, id) => {
     }
 };
 
+const sendFinish = (id) => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send(JSON.stringify({ type: 'submitFinal', tableId: id }));
+    } else {
+        console.log('Socket is not open.');
+    }
+};
+
 document.querySelector('#answerA').onclick = () => sendAnswer("A", currentTable);
 document.querySelector('#answerB').onclick = () => sendAnswer("B", currentTable);
 document.querySelector('#answerC').onclick = () => sendAnswer('C', currentTable);
 document.querySelector('#answerD').onclick = () => sendAnswer('D', currentTable);
+document.querySelector('#terminer').onclick = () => sendFinish(currentTable);
 
 document.querySelector('#disconnect').onclick = () => {
     if (socket) {

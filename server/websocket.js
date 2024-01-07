@@ -32,6 +32,12 @@ server.on('connection', socket => {
           tableId: data.tableId,
           isCorrect: isCorrect
       };
+    } else if (data.type ==='submitFinal') {
+      console.log('Received answer from client', currentClientId, ':', data);
+      response = {
+        type: 'tableFinished',
+        tableId: data.tableId
+      }
     }
 
     Object.keys(clients).forEach(id => {

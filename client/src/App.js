@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Question from './components/question.js';
+import CirclesGrid from './components/circlegrid.js';
+import './App.css'
 
 const App = () => {
     const [questionData, setQuestionData] = useState({ question: '', answers: {} });
@@ -7,6 +9,7 @@ const App = () => {
     const [isWaiting, setIsWaiting] = useState(true);
     const [timeIsUp, setTimeIsUp] = useState(false);
     const [timer, setTimer] = useState(30);
+    const [activeCircles, setActiveCircles] = useState([]);
     const [socket, setSocket] = useState(null);
     const audioRef = useRef(null);
     const timeIsUpRef = useRef(false);
@@ -19,6 +22,9 @@ const App = () => {
                 case 'question':
                     setQuestionData(data.question);
                     setIsWaiting(false);
+                    break;
+                case 'tableFinished':
+                    setActiveCircles(prev => [...new Set([...prev, data.tableId])]);
                     break;
                 case 'answerResult':
                     if (!timeIsUpRef.current) {
@@ -113,11 +119,18 @@ const App = () => {
 
     return (
         <div className="App">
-            <img src="Musique.png" alt="Description de l'image" />
-            <button onClick={togglePlay}>Play/Pause Music</button>
-            <audio ref={audioRef} src="musique.mp3" />
+            <div className="content-container">
+                <div className="media-container">
+                    <img src="Musique.png" alt="Description de l'image" className="music-logo" />
+                    <button onClick={togglePlay} className="play-pause-button">Play/Pause Music</button>
+                    <audio ref={audioRef} src="musique.mp3" />
+                </div>
+                <div className='circles'>
+                    <CirclesGrid activeCircles={activeCircles}/>
+                </div>
+            </div>
             {isWaiting ? (
-                <div>Restez vigilant, une question peut arriver à n'importe quel moment</div>
+                <div className='waitingText'>Restez vigilant, une question peut arriver à n'importe quel moment...</div>
             ) : (
                 <Question
                     questionData={questionData}
@@ -127,7 +140,7 @@ const App = () => {
                 />
             )}
         </div>
-    );
+    );     
 };
 
 export default App;
