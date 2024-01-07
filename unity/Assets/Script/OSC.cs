@@ -9,6 +9,7 @@ public class OSC : MonoBehaviour
     private OscServer server;
 
     public static Dictionary<int, Vector2> InstrumentPositions = new Dictionary<int, Vector2>();
+    public static float[] staticValues = new float[]{ 1, 1, 1, 1, 1,1 };
 
 
     void Start()
@@ -82,7 +83,17 @@ public class OSC : MonoBehaviour
             float r = data.GetElementAsFloat(10);
 
             // Debug.Log($"2Dobj - Session: {s}, ClassId: {i}, Position: ({x}, {y}), Angle: {a}, Velocity: ({X}, {Y}, {A}), MotionAcceleration: {m}, RotationAcceleration: {r}");
+            
+            staticValues[0] = data.GetElementAsFloat(6); // X
+            staticValues[1] = data.GetElementAsFloat(7); // Y
+            staticValues[2] = data.GetElementAsFloat(8); // A
+            staticValues[3] = data.GetElementAsFloat(9); // m
+            staticValues[4] = data.GetElementAsFloat(10); // r
+            staticValues[5] = data.GetElementAsFloat(2); // id
+
             InstrumentPositions[i] = new Vector2(x, y);
+            InstrumentSpawner.VerifyIfClicked();
+            
         }
         else if (command == "fseq")
         {

@@ -1,3 +1,4 @@
+using PimDeWitte.UnityMainThreadDispatcher;
 using UnityEngine;
 
 public class InstrumentSpawner : MonoBehaviour
@@ -20,6 +21,9 @@ public class InstrumentSpawner : MonoBehaviour
     public WebSocketClient webSocketClient;
 
     public static InstrumentSpawner Instance { get; private set; }
+    
+    public static float[] val = new float[] { 1, 1, 1, 1, 1, 10 };
+    public static bool isOk = false;
 
     void Awake()
     {
@@ -189,4 +193,50 @@ public class InstrumentSpawner : MonoBehaviour
         RectTransform rectTransform = instrument.GetComponent<RectTransform>();
         rectTransform.localPosition = localPoint;
     }
+    
+    public static void VerifyIfClicked()
+    {
+        float[] values = OSC.staticValues;
+        // Debug.Log(values[0] + "  " + values[1] + "  " + values[2] + "  " + values[3] + "  " + values[4]);
+        // Debug.Log(val[0] + "  " + val[1] + "  " + val[2] + "  " + val[3] + "  " + val[4]);
+        if (values[0] == 0 && values[1] == 0 && values[2] == 0 && values[3] == 0 && values[4] == 0 && val[0] == 0 && val[1] == 0 && val[2] == 0 && val[3] == 0 && val[4] == 0) 
+        {
+            if (isOk)
+            {
+                UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                {
+                    switch (values[5])
+                    {
+                        case 0: 
+                            GameObject piano = GameObject.Find("pianoPrefab0");
+                            if (piano != null)
+                            {
+                                Destroy(piano);
+                            }
+                            break;
+                        case 1: 
+                            GameObject guitare = GameObject.Find("guitarePrefab0");
+                            if (guitare != null) Destroy(guitare);
+                            break;
+                        case 2: 
+                            GameObject battery = GameObject.Find("batteryPrefab0");
+                            if (battery != null) Destroy(battery);
+                            break;
+                        case 3: 
+                            GameObject violon = GameObject.Find("violonPrefab0");
+                            if (violon != null) Destroy(violon);
+                            break;
+                    }
+                });
+            }
+
+            isOk = true;
+        }
+        else
+        {
+            isOk = false;
+        }
+        val = OSC.staticValues;
+    }
+    
 }
