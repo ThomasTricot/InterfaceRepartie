@@ -1,18 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script;
 using UnityEngine;
 
-public class validerMovement : MonoBehaviour
+public class ValiderMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Canvas canvas;
+
+    private GameObject valider;
+    
+    private int validerId = 6;
+
+
+
     void Start()
     {
-        
+        canvas = GetComponent<Canvas>();
+        if (canvas == null)
+        {
+            Debug.LogError("Canvas component not found on the GameObject");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        Vector2 position = OSC.GetInstrumentPosition(validerId);
         
+        valider = GameObject.Find("validatePrefab0");
+        if (position != Vector2.zero && valider == null)
+        {
+            InstrumentSpawner.SpawnValidateAt(CoordConvertor.Convert(position[0], position[1]));
+        }
+
+        
+        if (valider != null)
+        {
+            RectTransform validateRectTransform = valider.GetComponent<RectTransform>();
+            if (validateRectTransform != null)
+            {
+                validateRectTransform.localPosition = CoordConvertor.Convert(position[0], position[1]);
+            }
+            else
+            {
+                Debug.LogError("The validate prefab does not have a RectTransform component.");
+            }
+        }
     }
 }

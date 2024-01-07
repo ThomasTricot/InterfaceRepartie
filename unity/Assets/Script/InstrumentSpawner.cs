@@ -18,7 +18,7 @@ public class InstrumentSpawner : MonoBehaviour
 
     public GameObject reponsePrefab;
 
-    public WebSocketClient webSocketClient;
+    public static WebSocketClient webSocketClient;
 
     public static InstrumentSpawner Instance { get; private set; }
     
@@ -115,6 +115,7 @@ public class InstrumentSpawner : MonoBehaviour
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.validatePrefab, "validatePrefab0");
+            webSocketClient.SubmitFinal(1);
         }
     }
 

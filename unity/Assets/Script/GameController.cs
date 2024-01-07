@@ -7,12 +7,12 @@ public class GameController : MonoBehaviour
 
     private bool isSoundOn = true;
     public GameObject warningSoundObject; // Le GameObject qui contient l'AudioSource
-    private AudioSource warningSource; // Référence interne à l'AudioSource
+    private AudioSource warningSource; // RÃ©fÃ©rence interne Ã  l'AudioSource
     public AudioClip warningClip; // Glissez votre clip audio ici dans l'inspecteur
     public GameObject messagePrefab;
-    private GameObject messageInstance; // Pour garder une référence à l'instance du message créée
-    public Canvas canvas; // Référence au Canvas
-    public bool answerSelected = false; // Déplacé ici
+    private GameObject messageInstance; // Pour garder une rÃ©fÃ©rence Ã  l'instance du message crÃ©Ã©e
+    public Canvas canvas; // RÃ©fÃ©rence au Canvas
+    public bool answerSelected = false; // DÃ©placÃ© ici
 
     public AudioClip musiqueTableau; // Votre piste audio MP3 pour la musique du tableau
     private GameObject musicObject;
@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        // Assignation et vérification de warningSoundObject et warningSource
+        // Assignation et vÃ©rification de warningSoundObject et warningSource
         if (warningSoundObject != null)
         {
             warningSource = warningSoundObject.GetComponent<AudioSource>();
@@ -41,20 +41,20 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("warningSoundObject n'est pas défini");
+            Debug.LogError("warningSoundObject n'est pas dÃ©fini");
         }
 
         // Trouver et assigner le Canvas
         canvas = FindObjectOfType<Canvas>();
         if (canvas == null)
         {
-            Debug.LogError("Canvas introuvable dans la scène.");
+            Debug.LogError("Canvas introuvable dans la scÃ¨ne.");
         }
 
-        // Vérification que le prefab de message est défini
+        // VÃ©rification que le prefab de message est dÃ©fini
         if (messagePrefab == null)
         {
-            Debug.LogError("messagePrefab n'est pas défini");
+            Debug.LogError("messagePrefab n'est pas dÃ©fini");
         }
     }
 
@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    // Méthode d'origine pour jouer le son d'avertissement
+    // MÃ©thode d'origine pour jouer le son d'avertissement
     public void PlayWarningSound()
     {
         if (!isSoundOn && warningSource != null)
@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
         CreateMessageAtCenter();
     }
 
-    // Créer un nouvel AudioSource via script
+    // CrÃ©er un nouvel AudioSource via script
     public void CreateAndPlayAudioSource()
     {
         GameObject audioObject = new GameObject("TempAudio");
@@ -132,8 +132,8 @@ public class GameController : MonoBehaviour
 
     public void ResponsePlaced()
     {
-        Debug.Log("ResponsePlaced appelé"); // Pour confirmer que la méthode est déclenchée
-        StopWarningSound(); // Arrête la musique d'avertissement
+        Debug.Log("ResponsePlaced appelÃ©"); // Pour confirmer que la mÃ©thode est dÃ©clenchÃ©e
+        StopWarningSound(); // ArrÃªte la musique d'avertissement
         DestroyMessageObject(); // Retire le message
     }
 
@@ -141,23 +141,23 @@ public class GameController : MonoBehaviour
     {
         if (canvas != null && messagePrefab != null)
         {
-            // Détruire le message existant si nécessaire
+            // DÃ©truire le message existant si nÃ©cessaire
             if (messageInstance != null)
             {
                 Destroy(messageInstance);
             }
 
-            // Créer un nouveau message
+            // CrÃ©er un nouveau message
             messageInstance = Instantiate(messagePrefab, canvas.transform);
             RectTransform rectTransform = messageInstance.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = Vector2.zero; // Centre du canvas en utilisant anchoredPosition
 
             messageInstance.name = "MessagePrefab";
-            // Configurez le texte du message ici si nécessaire
+            // Configurez le texte du message ici si nÃ©cessaire
         }
         else
         {
-            Debug.LogError("Canvas ou messagePrefab n'est pas défini");
+            Debug.LogError("Canvas ou messagePrefab n'est pas dÃ©fini");
         }
     }
 
@@ -166,7 +166,7 @@ public class GameController : MonoBehaviour
         if (messageInstance != null)
         {
             Destroy(messageInstance);
-            messageInstance = null; // Réinitialiser la référence
+            messageInstance = null; // RÃ©initialiser la rÃ©fÃ©rence
         }
     }
 
@@ -178,19 +178,19 @@ public class GameController : MonoBehaviour
 
     public void CreateAndPlayMusic()
     {
-        // Si une musique est déjà en cours, l'arrêter
+        // Si une musique est dÃ©jÃ  en cours, l'arrÃªter
         if (musicObject != null)
         {
             Destroy(musicObject);
         }
 
-        // Créer un nouveau GameObject pour la source audio
+        // CrÃ©er un nouveau GameObject pour la source audio
         musicObject = new GameObject("MusicObject");
-        musicObject.transform.position = Camera.main.transform.position; // Ou toute autre position désirée
+        musicObject.transform.position = Camera.main.transform.position; // Ou toute autre position dÃ©sirÃ©e
 
         AudioSource audioSource = musicObject.AddComponent<AudioSource>();
         audioSource.clip = musiqueTableau;
-        audioSource.volume = 1; // Définissez le volume si nécessaire
+        audioSource.volume = 1; // DÃ©finissez le volume si nÃ©cessaire
         audioSource.loop = true; // Faites boucler la musique
 
         audioSource.Play();

@@ -43,21 +43,21 @@ public class WebSocketClient : MonoBehaviour
     void Start()
     {
         ws = new WebSocket("ws://localhost:8080");
-        ws.OnOpen += (sender, e) => Debug.Log("ConnectÈ au serveur WebSocket.");
+        ws.OnOpen += (sender, e) => Debug.Log("Connect√© au serveur WebSocket.");
         ws.OnMessage += (sender, e) =>
         {
-            Debug.Log("Message reÁu du serveur: " + e.Data);
+            Debug.Log("Message re√ßu du serveur: " + e.Data);
             var message = JsonUtility.FromJson<ServerMessage>(e.Data);
             if (message.type == "question")
             {
                 currentQuestionId = message.question.questionId;
-                Debug.Log("Question ID reÁue: " + currentQuestionId);
+                Debug.Log("Question ID re√ßue: " + currentQuestionId);
                 UnityMainThreadDispatcher.Instance().Enqueue(() => GameController.Instance.PlayWarningSoundDirectly());
             }
         };
 
         ws.OnError += (sender, e) => Debug.LogError("Erreur WebSocket: " + e.Message);
-        ws.OnClose += (sender, e) => Debug.Log("DÈconnectÈ du serveur WebSocket.");
+        ws.OnClose += (sender, e) => Debug.Log("D√©connect√© du serveur WebSocket.");
         ws.Connect();
     }
 
@@ -73,7 +73,7 @@ public class WebSocketClient : MonoBehaviour
                 tableId = tableID
             };
             string jsonMessage = JsonUtility.ToJson(message);
-            Debug.Log("Envoi de la rÈponse: " + jsonMessage);
+            Debug.Log("Envoi de la r√©ponse: " + jsonMessage);
             ws.Send(jsonMessage);
         }
         else
@@ -103,10 +103,10 @@ public class WebSocketClient : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) { Debug.Log("Touche A pressÈe."); SendAnswer("A", idTable); }
-        else if (Input.GetKeyDown(KeyCode.B)) { Debug.Log("Touche B pressÈe."); SendAnswer("B", idTable); }
-        else if (Input.GetKeyDown(KeyCode.C)) { Debug.Log("Touche C pressÈe."); SendAnswer("C", idTable); }
-        else if (Input.GetKeyDown(KeyCode.D)) { Debug.Log("Touche D pressÈe."); SendAnswer("D", idTable); }
+        if (Input.GetKeyDown(KeyCode.A)) { Debug.Log("Touche A press√©e."); SendAnswer("A", idTable); }
+        else if (Input.GetKeyDown(KeyCode.B)) { Debug.Log("Touche B press√©e."); SendAnswer("B", idTable); }
+        else if (Input.GetKeyDown(KeyCode.C)) { Debug.Log("Touche C press√©e."); SendAnswer("C", idTable); }
+        else if (Input.GetKeyDown(KeyCode.D)) { Debug.Log("Touche D press√©e."); SendAnswer("D", idTable); }
     }
 
     void OnApplicationQuit()
@@ -118,11 +118,11 @@ public class WebSocketClient : MonoBehaviour
     {
         if (!GameController.Instance.answerSelected) // Utilise l'indicateur de GameController
         {
-            Debug.Log($"RÈponse {answer} sÈlectionnÈe. id table {idTable}");
+            Debug.Log($"R√©ponse {answer} s√©lectionn√©e. id table {idTable}");
             SendAnswer(answer,idTable);
-            GameController.Instance.answerSelected = true; // Met ‡ jour l'indicateur dans GameController
+            GameController.Instance.answerSelected = true; // Met √† jour l'indicateur dans GameController
 
-            // RÈactive les audios (sauf warning) dans GameController
+            // R√©active les audios (sauf warning) dans GameController
             GameController.Instance.ToggleSound();
 
             // Change la couleur du texte du bouton
@@ -138,7 +138,7 @@ public class WebSocketClient : MonoBehaviour
     {
         Debug.Log("test");
         GameController.Instance.ToggleSound(); // Bascule le son
-        // Vous pouvez ajouter ici d'autres logiques spÈcifiques ‡ la rÈception d'une question
+        // Vous pouvez ajouter ici d'autres logiques sp√©cifiques √† la r√©ception d'une question
     }
 
 }
