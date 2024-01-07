@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Script; // Assurez-vous que cet espace de noms contient les éléments nécessaires.
+using Script; // Assurez-vous que cet espace de noms contient les ï¿½lï¿½ments nï¿½cessaires.
 
 public class ReponseMovement : MonoBehaviour
 {
     private Canvas canvas;
 
-    private GameObject reponse; // Référence à l'objet "réponse"
+    private GameObject reponse; // Rï¿½fï¿½rence ï¿½ l'objet "rï¿½ponse"
 
-    private int reponseId = 4; // ID pour l'objet "réponse"
+    private int reponseId = 4; // ID pour l'objet "rï¿½ponse"
 
     void Start()
     {
@@ -22,12 +22,12 @@ public class ReponseMovement : MonoBehaviour
 
     void Update()
     {
-        Vector2 position = OSC.GetInstrumentPosition(reponseId); // Récupère la position de l'objet "réponse"
+        Vector2 position = OSC.GetInstrumentPosition(reponseId); // Rï¿½cupï¿½re la position de l'objet "rï¿½ponse"
 
         reponse = GameObject.Find("reponsePrefab0");
         if (position != Vector2.zero && reponse == null)
         {
-            InstrumentSpawner.SpawnReponseAt(CoordConvertor.Convert(position[0], position[1])); // Crée l'objet "réponse" à la position spécifiée
+            InstrumentSpawner.SpawnReponseAt(CoordConvertor.Convert(position[0], position[1])); // Cree l'objet "rï¿½ponse" ï¿½ la position spï¿½cifiï¿½e
         }
 
         if (reponse != null)
@@ -35,7 +35,7 @@ public class ReponseMovement : MonoBehaviour
             RectTransform reponseRectTransform = reponse.GetComponent<RectTransform>();
             if (reponseRectTransform != null)
             {
-                reponseRectTransform.localPosition = CoordConvertor.Convert(position[0], position[1]); // Met à jour la position de l'objet "réponse"
+                reponseRectTransform.localPosition = CoordConvertor.Convert(position[0], position[1]); // Met ï¿½ jour la position de l'objet "rï¿½ponse"
             }
             else
             {

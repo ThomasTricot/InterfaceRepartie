@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 566634589}
   - component: {fileID: 566634591}
   - component: {fileID: 566634590}
+  - component: {fileID: 566634592}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -370,6 +371,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4119efe6246864eb028d4c9259fecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &566634592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566634582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ed9932f1131364d8485d7f1a18a379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &802809202
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +436,6 @@ MonoBehaviour:
   messagePrefab: {fileID: 1613687613515605317, guid: 1117b2f80e42fcd458ce217e36d778f1, type: 3}
   canvas: {fileID: 566634585}
   answerSelected: 0
-  musicSource: {fileID: 2280338442908268004, guid: 69c1978ea13e01b45a13aa0bf010e80c, type: 3}
   musiqueTableau: {fileID: 8300000, guid: 8f3cb5a777bf5b64d9034cec1bfc2126, type: 3}
 --- !u!114 &802809205
 MonoBehaviour:

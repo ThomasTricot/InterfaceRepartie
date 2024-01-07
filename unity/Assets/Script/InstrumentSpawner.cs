@@ -98,7 +98,6 @@ public class InstrumentSpawner : MonoBehaviour
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.musiquePrefab, "musiquePrefab0");
-            GameController.Instance.MusicPlaced();
         }
     }
 
@@ -111,11 +110,10 @@ public class InstrumentSpawner : MonoBehaviour
     }
 
     public static void SpawnReponseAt(Vector2 screenPosition)
-    {
+    { 
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.reponsePrefab, "reponsePrefab0");
-            GameController.Instance.ResponsePlaced();
         }
     }
 
