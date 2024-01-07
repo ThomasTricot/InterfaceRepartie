@@ -46,11 +46,13 @@ public class InstrumentSpawner : MonoBehaviour
         {
             name = "reponsePrefab0"; // Nom temporaire pour l'objet "r�ponse"
             SpawnReponseAtMouse(reponsePrefab); // Utilisez la m�thode existante pour cr�er l'objet
+            GameController.Instance.ResponsePlaced();
         }
         if (Input.GetKeyDown(KeyCode.M)) // Choisissez la touche pour musique
         {
             name = "musiquePrefab0";
             SpawnInstrumentAtMouse(musiquePrefab);
+            GameController.Instance.MusicPlaced();
         }
         else if (Input.GetKeyDown(KeyCode.V))
         {
@@ -96,6 +98,7 @@ public class InstrumentSpawner : MonoBehaviour
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.musiquePrefab, "musiquePrefab0");
+            GameController.Instance.MusicPlaced();
         }
     }
 
@@ -112,6 +115,7 @@ public class InstrumentSpawner : MonoBehaviour
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.reponsePrefab, "reponsePrefab0");
+            GameController.Instance.ResponsePlaced();
         }
     }
 

@@ -422,6 +422,9 @@ MonoBehaviour:
   warningClip: {fileID: 8300000, guid: 2fb3aadbfedde9b42b218ef54098ee76, type: 3}
   messagePrefab: {fileID: 1613687613515605317, guid: 1117b2f80e42fcd458ce217e36d778f1, type: 3}
   canvas: {fileID: 566634585}
+  answerSelected: 0
+  musicSource: {fileID: 2280338442908268004, guid: 69c1978ea13e01b45a13aa0bf010e80c, type: 3}
+  musiqueTableau: {fileID: 8300000, guid: 8f3cb5a777bf5b64d9034cec1bfc2126, type: 3}
 --- !u!114 &802809205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ca216ec3d71224fa0b479bd12d2d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedTextColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &802809207
 MonoBehaviour:
   m_ObjectHideFlags: 0

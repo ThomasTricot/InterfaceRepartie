@@ -1,11 +1,14 @@
 using UnityEngine;
 using WebSocketSharp;
 using PimDeWitte.UnityMainThreadDispatcher;
+using TMPro;
 
 public class WebSocketClient : MonoBehaviour
 {
     private WebSocket ws;
     private int currentQuestionId;
+    
+    public Color selectedTextColor = Color.yellow;
 
     [System.Serializable]
     public class AnswerMessage
@@ -84,8 +87,22 @@ public class WebSocketClient : MonoBehaviour
 
     public void OnAnswerButtonClicked(string answer)
     {
-        Debug.Log($"Réponse {answer} sélectionnée.");
-        SendAnswer(answer);
+        if (!GameController.Instance.answerSelected) // Utilise l'indicateur de GameController
+        {
+            Debug.Log($"Réponse {answer} sélectionnée.");
+            SendAnswer(answer);
+            GameController.Instance.answerSelected = true; // Met à jour l'indicateur dans GameController
+
+            // Réactive les audios (sauf warning) dans GameController
+            GameController.Instance.ToggleSound();
+
+            // Change la couleur du texte du bouton
+            TextMeshProUGUI textComp = GetComponentInChildren<TextMeshProUGUI>();
+            if (textComp != null)
+            {
+                textComp.color = selectedTextColor;
+            }
+        }
     }
 
     private void HandleQuestionReceived()
