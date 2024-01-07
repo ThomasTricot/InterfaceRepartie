@@ -17,6 +17,8 @@ public class InstrumentSpawner : MonoBehaviour
 
     public GameObject reponsePrefab;
 
+    public WebSocketClient webSocketClient;
+
     public static InstrumentSpawner Instance { get; private set; }
 
     void Awake()
@@ -58,6 +60,8 @@ public class InstrumentSpawner : MonoBehaviour
         {
             name = "validatePrefab0";
             SpawnInstrumentAtMouse(validatePrefab);
+            int tableID = 1; // Remplacez par la méthode appropriée pour obtenir l'ID de la table actuelle
+            webSocketClient.SubmitFinal(tableID);
         }
     }
 
@@ -98,6 +102,7 @@ public class InstrumentSpawner : MonoBehaviour
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.musiquePrefab, "musiquePrefab0");
+            GameController.Instance.MusicPlaced();
         }
     }
 
@@ -110,10 +115,11 @@ public class InstrumentSpawner : MonoBehaviour
     }
 
     public static void SpawnReponseAt(Vector2 screenPosition)
-    { 
+    {
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.reponsePrefab, "reponsePrefab0");
+            GameController.Instance.ResponsePlaced();
         }
     }
 

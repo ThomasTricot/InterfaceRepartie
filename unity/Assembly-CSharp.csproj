@@ -42,22 +42,22 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\CoordConvertor.cs" />
+     <Compile Include="Assets\Script\Movement\ViolonMovement.cs" />
      <Compile Include="Assets\Script\Movement\PianoMovement.cs" />
+     <Compile Include="Assets\Script\Movement\BatteryMovement.cs" />
      <Compile Include="Assets\Script\ChangeNote\ViolonChangeNote.cs" />
      <Compile Include="Assets\Script\ChangeNote\GuitareChangeNote.cs" />
      <Compile Include="Assets\Script\ChangeNote\PianoChangeNote.cs" />
+     <Compile Include="Assets\Script\UnityMainThreadDispatcher.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
+     <Compile Include="Assets\Script\Movement\ValiderMovement.cs" />
+     <Compile Include="Assets\Script\Movement\GuitareMovement.cs" />
      <Compile Include="Assets\Script\ChangeNote\BatteryChangeNote.cs" />
+     <Compile Include="Assets\Script\Movement\ReponseMovement.cs" />
      <Compile Include="Assets\Script\WebSocketClient.cs" />
+     <Compile Include="Assets\Script\Movement\MusiqueMovement.cs" />
      <Compile Include="Assets\Script\OSC.cs" />
      <Compile Include="Assets\Script\InstrumentSpawner.cs" />
-     <Compile Include="Assets\Script\Movement\ViolonMovement.cs" />
-     <Compile Include="Assets\Script\Movement\BatteryMovement.cs" />
-     <Compile Include="Assets\Script\Movement\GuitareMovement.cs" />
-     <Compile Include="Assets\Script\UnityMainThreadDispatcher.cs" />
-     <Compile Include="Assets\Script\Movement\MusiqueMovement.cs" />
-     <Compile Include="Assets\Script\Movement\ReponseMovement.cs" />
-     <Compile Include="Assets\Script\Movement\ValiderMovement.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <Folder Include="Assets\Audio\warning" />
@@ -87,6 +87,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <Folder Include="Assets\Script\Movement" />
+     <Folder Include="Assets\Audio\musique" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <Folder Include="Assets\Prefab\violon" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />

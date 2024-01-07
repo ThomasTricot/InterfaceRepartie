@@ -11,7 +11,7 @@ document.querySelector('#connect').onclick = () => {
         console.log('Feedback from quiz: ', data);
         console.log('Current question ID: ', currentQuestionId);
         const message = JSON.parse(data);
-        
+
         if (message.type === 'question') {
             currentQuestionId = message.question.questionId;
         } else if (message.type === 'answerResult') {

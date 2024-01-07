@@ -7,6 +7,7 @@ public class WebSocketClient : MonoBehaviour
 {
     private WebSocket ws;
     private int currentQuestionId;
+    private int idTable=1;
     
     public Color selectedTextColor = Color.yellow;
 
@@ -16,6 +17,7 @@ public class WebSocketClient : MonoBehaviour
         public string type;
         public string answer;
         public int questionId;
+        public int tableId;
     }
 
     [System.Serializable]
@@ -29,6 +31,13 @@ public class WebSocketClient : MonoBehaviour
     public class QuestionData
     {
         public int questionId;
+    }
+
+    [System.Serializable]
+    public class FinalMessage
+    {
+        public string type;
+        public int tableID;
     }
 
     void Start()
@@ -52,7 +61,7 @@ public class WebSocketClient : MonoBehaviour
         ws.Connect();
     }
 
-    public void SendAnswer(string answer)
+    public void SendAnswer(string answer, int tableID)
     {
         if (ws.ReadyState == WebSocketState.Open)
         {
@@ -60,7 +69,8 @@ public class WebSocketClient : MonoBehaviour
             {
                 type = "submitAnswer",
                 answer = answer,
-                questionId = currentQuestionId
+                questionId = currentQuestionId,
+                tableId = tableID
             };
             string jsonMessage = JsonUtility.ToJson(message);
             Debug.Log("Envoi de la réponse: " + jsonMessage);
@@ -72,12 +82,31 @@ public class WebSocketClient : MonoBehaviour
         }
     }
 
+    public void SubmitFinal(int tableID)
+    {
+        if (ws.ReadyState == WebSocketState.Open)
+        {
+            FinalMessage message = new FinalMessage
+            {
+                type = "submitFinal",
+                tableID = tableID
+            };
+            string jsonMessage = JsonUtility.ToJson(message);
+            Debug.Log("Envoi de submitFinal: " + jsonMessage);
+            ws.Send(jsonMessage);
+        }
+        else
+        {
+            Debug.LogError("La connexion WebSocket n'est pas ouverte.");
+        }
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) { Debug.Log("Touche A pressée."); SendAnswer("A"); }
-        else if (Input.GetKeyDown(KeyCode.B)) { Debug.Log("Touche B pressée."); SendAnswer("B"); }
-        else if (Input.GetKeyDown(KeyCode.C)) { Debug.Log("Touche C pressée."); SendAnswer("C"); }
-        else if (Input.GetKeyDown(KeyCode.D)) { Debug.Log("Touche D pressée."); SendAnswer("D"); }
+        if (Input.GetKeyDown(KeyCode.A)) { Debug.Log("Touche A pressée."); SendAnswer("A", idTable); }
+        else if (Input.GetKeyDown(KeyCode.B)) { Debug.Log("Touche B pressée."); SendAnswer("B", idTable); }
+        else if (Input.GetKeyDown(KeyCode.C)) { Debug.Log("Touche C pressée."); SendAnswer("C", idTable); }
+        else if (Input.GetKeyDown(KeyCode.D)) { Debug.Log("Touche D pressée."); SendAnswer("D", idTable); }
     }
 
     void OnApplicationQuit()
@@ -89,8 +118,8 @@ public class WebSocketClient : MonoBehaviour
     {
         if (!GameController.Instance.answerSelected) // Utilise l'indicateur de GameController
         {
-            Debug.Log($"Réponse {answer} sélectionnée.");
-            SendAnswer(answer);
+            Debug.Log($"Réponse {answer} sélectionnée. id table {idTable}");
+            SendAnswer(answer,idTable);
             GameController.Instance.answerSelected = true; // Met à jour l'indicateur dans GameController
 
             // Réactive les audios (sauf warning) dans GameController
