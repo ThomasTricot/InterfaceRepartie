@@ -7,6 +7,10 @@ public class InstrumentSpawner : MonoBehaviour
     public GameObject guitarePrefab;
     public GameObject violonPrefab;
 
+
+    public GameObject musiquePrefab;
+    public GameObject validatePrefab;
+
     private static Canvas canvas;
     private PianoChangeNote pianoChangeNote;
     private string name;
@@ -42,6 +46,18 @@ public class InstrumentSpawner : MonoBehaviour
         {
             name = "reponsePrefab0"; // Nom temporaire pour l'objet "r�ponse"
             SpawnReponseAtMouse(reponsePrefab); // Utilisez la m�thode existante pour cr�er l'objet
+            GameController.Instance.ToggleSound();
+
+        }
+        if (Input.GetKeyDown(KeyCode.M)) // Choisissez la touche pour musique
+        {
+            name = "musiquePrefab0";
+            SpawnInstrumentAtMouse(musiquePrefab);
+        }
+        else if (Input.GetKeyDown(KeyCode.V))
+        {
+            name = "validatePrefab0";
+            SpawnInstrumentAtMouse(validatePrefab);
         }
     }
 
@@ -74,6 +90,22 @@ public class InstrumentSpawner : MonoBehaviour
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.violonPrefab, "violonPrefab0");
+        }
+    }
+
+    public static void SpawnMusiqueAt(Vector2 screenPosition)
+    {
+        if (Instance != null)
+        {
+            SpawnInstrumentAt(screenPosition, Instance.musiquePrefab, "musiquePrefab0");
+        }
+    }
+
+    public static void SpawnValidateAt(Vector2 screenPosition)
+    {
+        if (Instance != null)
+        {
+            SpawnInstrumentAt(screenPosition, Instance.validatePrefab, "validatePrefab0");
         }
     }
 
@@ -119,5 +151,28 @@ public class InstrumentSpawner : MonoBehaviour
             audioSource.Stop();
             audioSource.Play();
         }
+    }
+
+
+    void SpawnInstrumentAtMouse(GameObject instrumentPrefab)
+    {
+        Vector2 screenMousePos = Input.mousePosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.GetComponent<RectTransform>(),
+            screenMousePos,
+            canvas.worldCamera,
+            out Vector2 localPoint
+        );
+
+
+        if (name == "")
+        {
+            return;
+        }
+
+        GameObject instrument = Instantiate(instrumentPrefab, canvas.transform);
+        instrument.name = name;
+        RectTransform rectTransform = instrument.GetComponent<RectTransform>();
+        rectTransform.localPosition = localPoint;
     }
 }

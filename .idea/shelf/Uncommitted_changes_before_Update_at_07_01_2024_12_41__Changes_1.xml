@@ -1,0 +1,74 @@
+<changelist name="Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1" date="1704627705387" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 07/01/2024 12:41 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/Search/transactions.db" />
+    <option name="AFTER_PATH" value="unity/Library/Search/transactions.db" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/transactions.db" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/EditorUserBuildSettings.asset" />
+    <option name="AFTER_PATH" value="unity/Library/EditorUserBuildSettings.asset" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/EditorUserBuildSettings.asset" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.pdb" />
+    <option name="AFTER_PATH" value="unity/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/Assembly-CSharp.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/SceneVisibilityState.asset" />
+    <option name="AFTER_PATH" value="unity/Library/SceneVisibilityState.asset" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/SceneVisibilityState.asset" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/Bee/tundra.digestcache" />
+    <option name="AFTER_PATH" value="unity/Library/Bee/tundra.digestcache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/tundra.digestcache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/Bee/TundraBuildState.state.map" />
+    <option name="AFTER_PATH" value="unity/Library/Bee/TundraBuildState.state.map" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/TundraBuildState.state.map" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/ScriptAssemblies/Assembly-CSharp.dll" />
+    <option name="AFTER_PATH" value="unity/Library/ScriptAssemblies/Assembly-CSharp.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/Assembly-CSharp.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Assets/Script/InstrumentSpawner.cs" />
+    <option name="AFTER_PATH" value="unity/Assets/Script/InstrumentSpawner.cs" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/InstrumentSpawner.cs" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.ref.dll" />
+    <option name="AFTER_PATH" value="unity/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.ref.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/Assembly-CSharp.ref.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/ArtifactDB" />
+    <option name="AFTER_PATH" value="unity/Library/ArtifactDB" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/ArtifactDB" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/Bee/TundraBuildState.state" />
+    <option name="AFTER_PATH" value="unity/Library/Bee/TundraBuildState.state" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/TundraBuildState.state" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/SourceAssetDB" />
+    <option name="AFTER_PATH" value="unity/Library/SourceAssetDB" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/SourceAssetDB" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/InspectorExpandedItems.asset" />
+    <option name="AFTER_PATH" value="unity/Library/InspectorExpandedItems.asset" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/InspectorExpandedItems.asset" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="unity/Library/expandedItems" />
+    <option name="AFTER_PATH" value="unity/Library/expandedItems" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_01_2024_12_41_[Changes]1/expandedItems" />
+  </binary>
+</changelist>

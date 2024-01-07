@@ -1,5 +1,6 @@
 using UnityEngine;
 using WebSocketSharp;
+using PimDeWitte.UnityMainThreadDispatcher;
 
 public class WebSocketClient : MonoBehaviour
 {
@@ -39,8 +40,10 @@ public class WebSocketClient : MonoBehaviour
             {
                 currentQuestionId = message.question.questionId;
                 Debug.Log("Question ID reçue: " + currentQuestionId);
+                UnityMainThreadDispatcher.Instance().Enqueue(() => GameController.Instance.PlayWarningSoundDirectly());
             }
         };
+
         ws.OnError += (sender, e) => Debug.LogError("Erreur WebSocket: " + e.Message);
         ws.OnClose += (sender, e) => Debug.Log("Déconnecté du serveur WebSocket.");
         ws.Connect();
@@ -83,6 +86,13 @@ public class WebSocketClient : MonoBehaviour
     {
         Debug.Log($"Réponse {answer} sélectionnée.");
         SendAnswer(answer);
+    }
+
+    private void HandleQuestionReceived()
+    {
+        Debug.Log("test");
+        GameController.Instance.ToggleSound(); // Bascule le son
+        // Vous pouvez ajouter ici d'autres logiques spécifiques à la réception d'une question
     }
 
 }

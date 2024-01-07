@@ -351,8 +351,12 @@
 "Assets/Script/CoordConvertor.cs"
 "Assets/Script/GameController.cs"
 "Assets/Script/InstrumentSpawner.cs"
+"Assets/Script/Movement/BatteryMovement.cs"
+"Assets/Script/Movement/GuitareMovement.cs"
+"Assets/Script/Movement/PianoMovement.cs"
+"Assets/Script/Movement/ViolonMovement.cs"
 "Assets/Script/OSC.cs"
-"Assets/Script/PianoMoving.cs"
+"Assets/Script/UnityMainThreadDispatcher.cs"
 "Assets/Script/WebSocketClient.cs"
 -langversion:9.0
 
