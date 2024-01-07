@@ -1,6 +1,9 @@
 let socket;
 let currentQuestionId;
 
+let id=0;
+let currentTable;
+
 document.querySelector('#connect').onclick = () => {
     socket = new WebSocket('ws://localhost:8080');
 
@@ -17,7 +20,8 @@ document.querySelector('#connect').onclick = () => {
     };
 
     socket.onopen = () => {
-        console.log('Connected to server');
+        currentTable = id++;
+        console.log('Connected to server, table: ' + currentTable);
     };
 
     socket.onclose = () => {
@@ -25,18 +29,18 @@ document.querySelector('#connect').onclick = () => {
     };
 };
 
-const sendAnswer = (answer) => {
+const sendAnswer = (answer, id) => {
     if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(JSON.stringify({ type: 'submitAnswer', answer: answer, questionId: currentQuestionId }));
+        socket.send(JSON.stringify({ type: 'submitAnswer', answer: answer, questionId: currentQuestionId, tableId: id }));
     } else {
         console.log('Socket is not open.');
     }
 };
 
-document.querySelector('#answerA').onclick = () => sendAnswer("A");
-document.querySelector('#answerB').onclick = () => sendAnswer("B");
-document.querySelector('#answerC').onclick = () => sendAnswer('C');
-document.querySelector('#answerD').onclick = () => sendAnswer('D');
+document.querySelector('#answerA').onclick = () => sendAnswer("A", currentTable);
+document.querySelector('#answerB').onclick = () => sendAnswer("B", currentTable);
+document.querySelector('#answerC').onclick = () => sendAnswer('C', currentTable);
+document.querySelector('#answerD').onclick = () => sendAnswer('D', currentTable);
 
 document.querySelector('#disconnect').onclick = () => {
     if (socket) {

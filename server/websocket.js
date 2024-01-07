@@ -29,6 +29,7 @@ server.on('connection', socket => {
         response = {
           type: 'answerResult',
           answer: data.answer,
+          tableId: data.tableId,
           isCorrect: isCorrect
       };
     }
