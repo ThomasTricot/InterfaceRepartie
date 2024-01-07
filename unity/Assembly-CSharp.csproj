@@ -55,6 +55,9 @@
      <Compile Include="Assets\Script\Movement\BatteryMovement.cs" />
      <Compile Include="Assets\Script\Movement\GuitareMovement.cs" />
      <Compile Include="Assets\Script\UnityMainThreadDispatcher.cs" />
+     <Compile Include="Assets\Script\Movement\musiqueMovement.cs" />
+     <Compile Include="Assets\Script\Movement\reponseMovement.cs" />
+     <Compile Include="Assets\Script\Movement\validerMovement.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <Folder Include="Assets\Audio\warning" />

@@ -420,6 +420,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warningSoundObject: {fileID: 8663727366255472137, guid: 164d237ddb738ce48a2b040e91956fcd, type: 3}
   warningClip: {fileID: 8300000, guid: 2fb3aadbfedde9b42b218ef54098ee76, type: 3}
+  messagePrefab: {fileID: 1613687613515605317, guid: 1117b2f80e42fcd458ce217e36d778f1, type: 3}
+  canvas: {fileID: 566634585}
 --- !u!114 &802809205
 MonoBehaviour:
   m_ObjectHideFlags: 0
