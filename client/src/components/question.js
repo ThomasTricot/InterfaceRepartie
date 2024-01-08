@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './question.css';
 
 const Response = ({ label, text, responses, isCorrect, timeIsUp }) => {
+    const responseClasses = `response ${isCorrect ? "selected correct full-size" : "selected"}`;
     const responseStyle = timeIsUp && isCorrect 
-        ? { backgroundColor: 'lightgreen' } 
+        ? { backgroundColor: '#34eb3d' } 
         : { backgroundColor: 'lightgray' };
 
     const showSeparator = responses && responses.length > 0;
     
     return (
-        <div className='response selected' style={responseStyle}>
+        <div className={responseClasses} style={responseStyle}>
             <div className={`response-content ${showSeparator ? "" : "full-width"}`}>
                 <div className="response-label">{label}</div>
                 <div className="response-text">{text}</div>

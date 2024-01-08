@@ -110,8 +110,23 @@
     float: left;
 }
 
-
-
+@keyframes blink {
+    0% { background-color: #34eb3d; }
+    50% { background-color: lightgrey; }
+    100% { background-color: #34eb3d; }
+}
+  
+@keyframes growAndShrink {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+  
+.response.correct.full-size {
+    animation: blink 1s linear 4, growAndShrink 4s ease-in-out;
+}
+  
+  
 @media (max-width: 600px) {
     .response {
         width: calc(100% - 20px);
