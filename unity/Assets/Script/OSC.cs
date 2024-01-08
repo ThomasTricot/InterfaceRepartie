@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 using OscJack;
@@ -58,10 +59,9 @@ public class OSC : MonoBehaviour
             // Debug.Log($"2Dcur - Session: {s}, Position: ({x}, {y}), Velocity: ({X}, {Y}), MotionAcceleration: {m}");
             
         }
-        else if (command == "fseq")
+        else if (command == "alive")
         {
-            int fseq = data.GetElementAsInt(1);
-            // Debug.Log("Frame Sequence: " + fseq);
+            Debug.Log(data.GetElementAsInt(1));
         }
     }
 
@@ -72,9 +72,6 @@ public class OSC : MonoBehaviour
         if (command == "set")
         {
             text = data.GetElementAsString(2);
-            
-            float s = data.GetElementAsFloat(1);
-
             string stringToInt = data.GetElementAsString(2);
             int i;
             try
@@ -86,6 +83,7 @@ public class OSC : MonoBehaviour
                 i = 0;
             }
             
+            float s = data.GetElementAsFloat(1);
             float x = data.GetElementAsFloat(3);
             float y = data.GetElementAsFloat(4);
             float a = data.GetElementAsFloat(5);
@@ -108,13 +106,18 @@ public class OSC : MonoBehaviour
             staticValues[5] = data.GetElementAsFloat(2); // id
 
             InstrumentPositions[i] = new Vector2(x, y);
-            //InstrumentSpawner.VerifyIfClicked();
-            
         }
-        else if (command == "fseq")
+        else if (command == "alive")
         {
-            int fseq = data.GetElementAsInt(1);
-            // Debug.Log("Frame Sequence: " + fseq);
+            int number = data.GetElementCount();
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 1; i < number; i++)
+            {
+                if (i > 1) sb.Append(" , ");
+                sb.Append(data.GetElementAsInt(i));
+            }
+            Debug.Log(sb.ToString());
         }
     }
     
@@ -124,6 +127,6 @@ public class OSC : MonoBehaviour
         {
             return position;
         }
-        return Vector2.zero; // Retourner une valeur par défaut si l'ID n'est pas trouvé
+        return Vector2.zero;
     }
 }
