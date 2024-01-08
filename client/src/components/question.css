@@ -4,9 +4,9 @@
 }
 
 .question-text {
-    font-size: 28px;
+    font-size: 4em;
+    font-weight: bold;
     font-family: 'Open Sans', sans-serif;
-    color: #2a2a2a;
     margin: 10px 0px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -20,14 +20,12 @@
 
 .response {
     position: relative;
-    width: calc(45%);
-    height: 200px;
+    width: calc(40%);
+    height: 230px;
     background-color: lightgray;
     margin: 20px;
     padding: 10px;
     text-align: center;
-    box-sizing: border-box;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
     box-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
 
@@ -41,8 +39,6 @@
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    position: absolute; 
-    bottom: 10px;
 }
 
 
@@ -52,18 +48,20 @@
 }
 
 .response-label {
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
 }
 
 .response-text {
-    font-size: 30px;
+    font-size: 50px;
+    padding-bottom: 20px;
 }
 
 .question-progress-container {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
+    max-width: 75%;
 }
 
 .progress-bar-container {
@@ -72,7 +70,10 @@
     background-color: #eee;
     border-radius: 5px;
     overflow: hidden;
-    margin: 10px 0px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.2);
+
 }
 
 .progress-bar {
@@ -81,9 +82,38 @@
     transition: width 1s ease-out;
 }
 
+.response-content.full-width {
+    width: 100%;
+}
+
+.response-content {
+    width: 60%;
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.response-separator {
+    width: 2px;
+    background-color: black;
+    height: 100%;
+    float: left;
+}
+
+.response-remaining {
+    width: 38%;
+    height: 100%;
+    float: left;
+}
+
+
 
 @media (max-width: 600px) {
     .response {
-        width: calc(100% - 20px); /* Pour trois colonnes sur de plus grands écrans */
+        width: calc(100% - 20px);
     }
 }

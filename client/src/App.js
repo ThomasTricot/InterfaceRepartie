@@ -74,7 +74,7 @@ const App = () => {
         const newSocket = new WebSocket('ws://localhost:8080');
         newSocket.onmessage = handleWebSocketMessages;
         newSocket.onopen = () => {
-            const delay = Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000;
+            const delay = Math.floor(Math.random() * (20 + 1)) + 1;
             setTimeout(() => {
                 newSocket.send(JSON.stringify({ type: 'requestQuestion' }));
                 setIsWaiting(true);
@@ -93,7 +93,7 @@ const App = () => {
     useEffect(() => {
         let interval;
         if (!isWaiting) {
-            setTimer(30);
+            setTimer(3);
             setTimeIsUp(false);
             interval = setInterval(() => {
                 setTimer(prevTimer => {
