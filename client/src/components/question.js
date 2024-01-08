@@ -5,7 +5,7 @@ const Response = ({ label, text, responses, isCorrect, timeIsUp }) => {
     const responseStyle = timeIsUp && isCorrect 
         ? { backgroundColor: 'lightgreen' } 
         : { backgroundColor: 'lightgray' };
-
+    
     return (
         <div className='response selected' style={responseStyle}>
             <div className="response-label">{label}</div>
@@ -33,12 +33,16 @@ const Question = ({ questionData, tableResponses, timeIsUp, timer }) => {
         return <div>Pas encore de questions restez vigilents !</div>;
     }
 
+    const progressBarWidth = timeIsUp ? 100 : ((30 - timer) / 30) * 100;
+
     return (
         <div className="question-container">
-            <div className="timer">
-                {timer > 0 ? `${timer}s` : "Temps écoulé"}
+            <div className="question-progress-container">
+                <div className="progress-bar-container">
+                    <div className="progress-bar" style={{ width: `${progressBarWidth}%` }}></div>
+                </div>
+                <div className="question-text">{questionData.question}</div>
             </div>
-            <div className="question-text">{questionData.question}</div>
             <div className="responses">
                 {Object.entries(questionData.answers).map(([label, text]) => (
                     <Response 
