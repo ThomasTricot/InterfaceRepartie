@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using OscJack;
+using TMPro;
 
 public class OSC : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class OSC : MonoBehaviour
 
     public static Dictionary<int, Vector2> InstrumentPositions = new Dictionary<int, Vector2>();
     public static float[] staticValues = new float[]{ 1, 1, 1, 1, 1,1 };
-
-
+    public TMP_Text textMesh;
+    public string text = "Searching ...";
     void Start()
     {
         
@@ -30,7 +31,7 @@ public class OSC : MonoBehaviour
 
     void Update()
     {
-        
+        textMesh.text = text;
     }
 
     private void OnDestroy()
@@ -83,7 +84,9 @@ public class OSC : MonoBehaviour
             float r = data.GetElementAsFloat(10);
 
             // Debug.Log($"2Dobj - Session: {s}, ClassId: {i}, Position: ({x}, {y}), Angle: {a}, Velocity: ({X}, {Y}, {A}), MotionAcceleration: {m}, RotationAcceleration: {r}");
-            
+            text = "2Dobj - Session: " + s + " ClassId: " + i + " Position: (" + x + "," + y + "), Angle: " +
+                            a + " Velocity: (" + X + "," + Y + ", " + A + "), MotionAcceleration: " + m +
+                            " , RotationAcceleration: " + r;
             staticValues[0] = data.GetElementAsFloat(6); // X
             staticValues[1] = data.GetElementAsFloat(7); // Y
             staticValues[2] = data.GetElementAsFloat(8); // A
