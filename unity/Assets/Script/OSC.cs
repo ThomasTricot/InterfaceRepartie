@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using OscJack;
+using TMPro;
 
 public class OSC : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class OSC : MonoBehaviour
 
     public static Dictionary<int, Vector2> InstrumentPositions = new Dictionary<int, Vector2>();
     public static float[] staticValues = new float[]{ 1, 1, 1, 1, 1,1 };
-
-
+    public TMP_Text textMesh;
+    public string text = "Searching ...";
     void Start()
     {
         
@@ -30,7 +31,7 @@ public class OSC : MonoBehaviour
 
     void Update()
     {
-        
+        textMesh.text = text;
     }
 
     private void OnDestroy()
@@ -67,11 +68,23 @@ public class OSC : MonoBehaviour
     void Process2DObj(string address, OscDataHandle data)
     {
         string command = data.GetElementAsString(0);
+
         if (command == "set")
         {
-            float s = data.GetElementAsFloat(1);
+            text = data.GetElementAsString(2);
             
-            int i = (int)data.GetElementAsFloat(2);
+            float s = data.GetElementAsFloat(1);
+
+            string stringToInt = data.GetElementAsString(2);
+            int i;
+            try
+            {
+                i = int.Parse(stringToInt.Substring(0, 1));
+            }
+            catch
+            {
+                i = 0;
+            }
             
             float x = data.GetElementAsFloat(3);
             float y = data.GetElementAsFloat(4);
@@ -83,6 +96,9 @@ public class OSC : MonoBehaviour
             float r = data.GetElementAsFloat(10);
 
             // Debug.Log($"2Dobj - Session: {s}, ClassId: {i}, Position: ({x}, {y}), Angle: {a}, Velocity: ({X}, {Y}, {A}), MotionAcceleration: {m}, RotationAcceleration: {r}");
+            // text = "2Dobj - Session: " + s + " ClassId: " + i + " Position: (" + x + "," + y + "), Angle: " +
+            //                 a + " Velocity: (" + X + "," + Y + ", " + A + "), MotionAcceleration: " + m +
+            //                 " , RotationAcceleration: " + r;
             
             staticValues[0] = data.GetElementAsFloat(6); // X
             staticValues[1] = data.GetElementAsFloat(7); // Y
@@ -92,7 +108,7 @@ public class OSC : MonoBehaviour
             staticValues[5] = data.GetElementAsFloat(2); // id
 
             InstrumentPositions[i] = new Vector2(x, y);
-            InstrumentSpawner.VerifyIfClicked();
+            //InstrumentSpawner.VerifyIfClicked();
             
         }
         else if (command == "fseq")
