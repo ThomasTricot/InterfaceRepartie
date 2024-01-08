@@ -72,11 +72,19 @@ public class OSC : MonoBehaviour
         if (command == "set")
         {
             text = data.GetElementAsString(2);
-
             
             float s = data.GetElementAsFloat(1);
 
-            int i = (int)data.GetElementAsFloat(2);
+            string stringToInt = data.GetElementAsString(2);
+            int i;
+            try
+            {
+                i = int.Parse(stringToInt.Substring(0, 1));
+            }
+            catch
+            {
+                i = 0;
+            }
             
             float x = data.GetElementAsFloat(3);
             float y = data.GetElementAsFloat(4);
