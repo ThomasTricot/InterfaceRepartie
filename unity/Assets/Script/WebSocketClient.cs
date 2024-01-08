@@ -37,7 +37,7 @@ public class WebSocketClient : MonoBehaviour
     public class FinalMessage
     {
         public string type;
-        public int tableID;
+        public int tableId;
     }
 
     void Start()
@@ -89,7 +89,7 @@ public class WebSocketClient : MonoBehaviour
             FinalMessage message = new FinalMessage
             {
                 type = "submitFinal",
-                tableID = tableID
+                tableId = tableID
             };
             string jsonMessage = JsonUtility.ToJson(message);
             Debug.Log("Envoi de submitFinal: " + jsonMessage);

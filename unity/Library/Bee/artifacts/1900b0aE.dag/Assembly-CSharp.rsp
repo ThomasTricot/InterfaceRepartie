@@ -359,6 +359,7 @@
 "Assets/Script/Movement/ValiderMovement.cs"
 "Assets/Script/Movement/ViolonMovement.cs"
 "Assets/Script/OSC.cs"
+"Assets/Script/RotateObject.cs"
 "Assets/Script/UnityMainThreadDispatcher.cs"
 "Assets/Script/WebSocketClient.cs"
 -langversion:9.0

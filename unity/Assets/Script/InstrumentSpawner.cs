@@ -64,8 +64,7 @@ public class InstrumentSpawner : MonoBehaviour
         {
             name = "validatePrefab0";
             SpawnInstrumentAtMouse(validatePrefab);
-            int tableID = 1; // Remplacez par la méthode appropriée pour obtenir l'ID de la table actuelle
-            webSocketClient.SubmitFinal(tableID);
+            FindObjectOfType<WebSocketClient>().SubmitFinal(1);
         }
     }
 
@@ -115,7 +114,7 @@ public class InstrumentSpawner : MonoBehaviour
         if (Instance != null)
         {
             SpawnInstrumentAt(screenPosition, Instance.validatePrefab, "validatePrefab0");
-            webSocketClient.SubmitFinal(1);
+            FindObjectOfType<WebSocketClient>().SubmitFinal(1);
         }
     }
 
