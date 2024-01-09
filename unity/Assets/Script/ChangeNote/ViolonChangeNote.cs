@@ -6,38 +6,42 @@ using UnityEngine.Serialization;
 public class ViolonChangeNote : MonoBehaviour
 {
     public GameObject[] violonPrefabs;
-    private int currentPrefabIndex = 0;
+    private int guitareId = 3;
+    private int currentViolonIndex = -1;
 
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.RightArrow))
-        // {
-        //     Debug.Log("droite");
-        //     ChangePrefab(1); // Change au prefab suivant
-        // }
-        // else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        // {
-        //     Debug.Log("gauche");
-        //     ChangePrefab(-1); // Change au prefab précédent
-        // }
+        float rotation = OSC.GetInstrumenRotation(guitareId);
+        if(rotation >= 0 && rotation < 0.5 && currentViolonIndex != 0) ChangePrefab(0);
+        if(rotation >= 0.5 && rotation < 1 && currentViolonIndex != 1) ChangePrefab(1);
+        if(rotation >= 1 && rotation < 1.5 && currentViolonIndex != 2) ChangePrefab(2);
+        if(rotation >= 1.5 && rotation < 2 && currentViolonIndex != 3) ChangePrefab(3);
+        if(rotation >= 2 && rotation < 2.5 && currentViolonIndex != 4) ChangePrefab(4);
+        if(rotation >= 2.5 && rotation < 3 && currentViolonIndex != 5) ChangePrefab(5);
+        if(rotation >= 3 && rotation < 3.5 && currentViolonIndex != 6) ChangePrefab(6);
+        if(rotation >= 3.5 && rotation < 4 && currentViolonIndex != 7) ChangePrefab(7);
+        if(rotation >= 4 && rotation < 4.5 && currentViolonIndex != 8) ChangePrefab(8);
+        if(rotation >= 4.5 && rotation < 5 && currentViolonIndex != 9) ChangePrefab(9);
+        if(rotation >= 5 && rotation < 5.5 && currentViolonIndex != 10) ChangePrefab(10);
+        if(rotation >= 5.5 && rotation < 6 && currentViolonIndex != 11) ChangePrefab(11);
+        if(rotation >= 6 && rotation < 6.3 && currentViolonIndex != 11) ChangePrefab(11);
     }
 
-    void ChangePrefab(int change)
+
+    void ChangePrefab(int targetIndex)
     {
-        GameObject currentViolon = transform.Find($"violonPrefab{currentPrefabIndex}")?.gameObject;
-        Vector3 oldPosition = Vector3.zero; // Position par défaut
+        if (currentViolonIndex == targetIndex - 1) return;
+        currentViolonIndex = targetIndex - 1;
+        GameObject currentViolon = ObjectFinder.FindViolonPrefab();
+        Vector3 oldPosition = Vector3.zero;
 
         if (currentViolon != null)
         {
-            oldPosition = currentViolon.transform.position; // Stocke la position
+            oldPosition = currentViolon.transform.position;
             Destroy(currentViolon);
         }
-
-        // Mise à jour de l'index, en s'assurant qu'il reste dans la plage valide
-        currentPrefabIndex = (currentPrefabIndex + change + violonPrefabs.Length) % violonPrefabs.Length;
-
-        // Création du nouveau piano à l'ancienne position
-        GameObject newViolon = Instantiate(violonPrefabs[currentPrefabIndex], oldPosition, Quaternion.identity, transform);
-        newViolon.name = $"pianoPrefab{currentPrefabIndex}";
+        
+        GameObject newViolon = Instantiate(violonPrefabs[targetIndex], oldPosition, Quaternion.identity, transform);
+        newViolon.name = $"violonPrefab{targetIndex}";
     }
 }

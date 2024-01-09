@@ -14,6 +14,7 @@ public class OSC : MonoBehaviour
     private OscServer server;
 
     public static Dictionary<int, Vector2> InstrumentPositions = new Dictionary<int, Vector2>();
+    public static Dictionary<int, float> InstrumentRotations = new Dictionary<int, float>();
     public TMP_Text textMesh;
     public string text = "Searching ...";
 
@@ -148,6 +149,7 @@ public class OSC : MonoBehaviour
             
             sessionIdToObjId[s] = i;
             InstrumentPositions[i] = new Vector2(x, y);
+            InstrumentRotations[i] = a;
         }
         else if (command == "alive")
         {
@@ -183,5 +185,14 @@ public class OSC : MonoBehaviour
             return position;
         }
         return Vector2.zero;
+    }
+    
+    public static float GetInstrumenRotation(int instrumentId)
+    {
+        if (InstrumentRotations.TryGetValue(instrumentId, out float rotation))
+        {
+            return rotation;
+        }
+        return 0;
     }
 }

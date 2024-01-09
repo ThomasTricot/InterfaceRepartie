@@ -72,7 +72,7 @@ public class InstrumentSpawner : MonoBehaviour
     {
         if (Instance != null)
         {
-            SpawnInstrumentAt(screenPosition, Instance.pianoPrefab, "pianoPrefab0");
+            SpawnInstrumentAt(screenPosition, Instance.pianoPrefab, "pianoPrefab1");
         }
     }
 
@@ -80,7 +80,7 @@ public class InstrumentSpawner : MonoBehaviour
     {
         if (Instance != null)
         {
-            SpawnInstrumentAt(screenPosition, Instance.batteryPrefab, "batteryPrefab0");
+            SpawnInstrumentAt(screenPosition, Instance.batteryPrefab, "batteryPrefab1");
         }
     }
 
@@ -88,7 +88,7 @@ public class InstrumentSpawner : MonoBehaviour
     {
         if (Instance != null)
         {
-            SpawnInstrumentAt(screenPosition, Instance.guitarePrefab, "guitarePrefab0");
+            SpawnInstrumentAt(screenPosition, Instance.guitarePrefab, "guitarePrefab1");
         }
     }
 
@@ -96,7 +96,7 @@ public class InstrumentSpawner : MonoBehaviour
     {
         if (Instance != null)
         {
-            SpawnInstrumentAt(screenPosition, Instance.violonPrefab, "violonPrefab0");
+            SpawnInstrumentAt(screenPosition, Instance.violonPrefab, "violonPrefab1");
         }
     }
 
