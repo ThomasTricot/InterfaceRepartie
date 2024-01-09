@@ -24,8 +24,8 @@ public class GuitareMovement : MonoBehaviour
     void Update()
     {
         Vector2 position = OSC.GetInstrumentPosition(guitareId);
-        
-        guitare = GameObject.Find("guitarePrefab0");
+
+        guitare = ObjectFinder.FindGuitarePrefab();
         if (position != Vector2.zero && guitare == null)
         {
             InstrumentSpawner.SpawnGuitareAt(CoordConvertor.Convert(position[0], position[1]));

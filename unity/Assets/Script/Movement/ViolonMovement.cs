@@ -27,8 +27,8 @@ public class ViolonMovement : MonoBehaviour
     void Update()
     {
         Vector2 position = OSC.GetInstrumentPosition(violonId);
-        
-        violon = GameObject.Find("violonPrefab0");
+
+        violon = ObjectFinder.FindViolonPrefab();
         if (position != Vector2.zero && violon == null)
         {
             InstrumentSpawner.SpawnViolonAt(CoordConvertor.Convert(position[0], position[1]));

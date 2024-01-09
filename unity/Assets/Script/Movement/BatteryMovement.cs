@@ -26,8 +26,8 @@ public class BatteryMovement : MonoBehaviour
     void Update()
     {
         Vector2 position = OSC.GetInstrumentPosition(batteryId);
-        
-        battery = GameObject.Find("batteryPrefab0");
+
+        battery = ObjectFinder.FindBatteryPrefab();
         if (position != Vector2.zero && battery == null)
         {
             InstrumentSpawner.SpawnBatteryAt(CoordConvertor.Convert(position[0], position[1]));
