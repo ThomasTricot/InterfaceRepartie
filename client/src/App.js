@@ -11,8 +11,10 @@ const App = () => {
     const [timer, setTimer] = useState(30);
     const [activeCircles, setActiveCircles] = useState([]);
     const [socket, setSocket] = useState(null);
+    const [logoImage, setLogoImage] = useState("resume.png");
     const audioRef = useRef(null);
     const timeIsUpRef = useRef(false);
+    const correctSoundRef = useRef(null);
 
     const handleWebSocketMessages = (event) => {
         console.log("Received data:", event.data);
@@ -72,7 +74,7 @@ const App = () => {
         const newSocket = new WebSocket('ws://localhost:8080');
         newSocket.onmessage = handleWebSocketMessages;
         newSocket.onopen = () => {
-            const delay = Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000;
+            const delay = Math.floor(Math.random() * (20 + 1)) + 1;
             setTimeout(() => {
                 newSocket.send(JSON.stringify({ type: 'requestQuestion' }));
                 setIsWaiting(true);
@@ -91,7 +93,7 @@ const App = () => {
     useEffect(() => {
         let interval;
         if (!isWaiting) {
-            setTimer(30);
+            setTimer(3);
             setTimeIsUp(false);
             interval = setInterval(() => {
                 setTimer(prevTimer => {
@@ -112,21 +114,44 @@ const App = () => {
     const togglePlay = () => {
         if (audioRef.current.paused) {
             audioRef.current.play();
+            setLogoImage("pause.png");
         } else {
             audioRef.current.pause();
+            setLogoImage("resume.png");
         }
+    };
+
+    const handleCircleClick = (circleNumber) => {
+        setActiveCircles(prevActiveCircles => {
+            const isCircleAlreadyActive = prevActiveCircles.includes(circleNumber);
+    
+            if (!isCircleAlreadyActive) {
+                correctSoundRef.current.play();
+            }
+    
+            if (isCircleAlreadyActive) {
+                return prevActiveCircles.filter(num => num !== circleNumber);
+            } else {
+                return [...prevActiveCircles, circleNumber];
+            }
+        });
     };
 
     return (
         <div className="App">
             <div className="content-container">
                 <div className="media-container">
-                    <img src="Musique.png" alt="Description de l'image" className="music-logo" />
-                    <button onClick={togglePlay} className="play-pause-button">Play/Pause Music</button>
+                    <img 
+                        src={logoImage} 
+                        onClick={togglePlay} 
+                        className="music-logo" 
+                        alt="Play/Pause"
+                    />
                     <audio ref={audioRef} src="musique.mp3" />
+                    <audio ref={correctSoundRef} src="correct.mp3" preload="auto" />
                 </div>
                 <div className='circles'>
-                    <CirclesGrid activeCircles={activeCircles}/>
+                    <CirclesGrid activeCircles={activeCircles} onCircleClick={handleCircleClick} />
                 </div>
             </div>
             {isWaiting ? (
