@@ -23,6 +23,7 @@ public class PianoMovement : MonoBehaviour
 
     void Update()
     {
+        
         Vector2 position = OSC.GetInstrumentPosition(pianoId);
         
         piano = GameObject.Find("pianoPrefab0");
@@ -30,7 +31,6 @@ public class PianoMovement : MonoBehaviour
         {
             InstrumentSpawner.SpawnPianoAt(CoordConvertor.Convert(position[0], position[1]));
         }
-
         
         if (piano != null)
         {

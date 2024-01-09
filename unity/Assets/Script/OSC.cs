@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Text;
 using UnityEngine;
 
 using OscJack;
+using PimDeWitte.UnityMainThreadDispatcher;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class OSC : MonoBehaviour
 {
     private OscServer server;
 
     public static Dictionary<int, Vector2> InstrumentPositions = new Dictionary<int, Vector2>();
-    public static float[] staticValues = new float[]{ 1, 1, 1, 1, 1,1 };
     public TMP_Text textMesh;
     public string text = "Searching ...";
+
+    public List<int> sessionElementsList;
+    
+    private Dictionary<int, int> sessionIdToObjId = new Dictionary<int, int>();
+    private List<int> previousSessionElementsList = new List<int>();
+    private Queue<int> idsToDestroy = new Queue<int>();
+
+
+
     void Start()
     {
         
@@ -33,6 +44,43 @@ public class OSC : MonoBehaviour
     void Update()
     {
         textMesh.text = text;
+        while (idsToDestroy.Count > 0)
+        {
+            int objId = idsToDestroy.Dequeue();
+            switch (objId)
+            {
+                case 0:
+                    InstrumentPositions[0] = Vector2.zero;
+                    GameController.DestroyPiano();
+                    break;
+                case 1:
+                    InstrumentPositions[1] = Vector2.zero;
+                    GameController.DestroyGuitare();
+                    break;
+                case 2:
+                    InstrumentPositions[2] = Vector2.zero;
+                    GameController.DestroyBattery();
+                    break;
+                case 3:
+                    InstrumentPositions[3] = Vector2.zero;
+                    GameController.DestroyViolon();
+                    break;
+                case 4:
+                    InstrumentPositions[4] = Vector2.zero;
+                    GameController.DestroyViolon();
+                    break;
+                case 5:
+                    InstrumentPositions[5] = Vector2.zero;
+                    GameController.DestroyMusique();
+                    break;
+                case 6:
+                    InstrumentPositions[6] = Vector2.zero;
+                    GameController.DestroyReponse();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private void OnDestroy()
@@ -83,7 +131,7 @@ public class OSC : MonoBehaviour
                 i = 0;
             }
             
-            float s = data.GetElementAsFloat(1);
+            int s = (int)data.GetElementAsFloat(1);
             float x = data.GetElementAsFloat(3);
             float y = data.GetElementAsFloat(4);
             float a = data.GetElementAsFloat(5);
@@ -98,26 +146,33 @@ public class OSC : MonoBehaviour
             //                 a + " Velocity: (" + X + "," + Y + ", " + A + "), MotionAcceleration: " + m +
             //                 " , RotationAcceleration: " + r;
             
-            staticValues[0] = data.GetElementAsFloat(6); // X
-            staticValues[1] = data.GetElementAsFloat(7); // Y
-            staticValues[2] = data.GetElementAsFloat(8); // A
-            staticValues[3] = data.GetElementAsFloat(9); // m
-            staticValues[4] = data.GetElementAsFloat(10); // r
-            staticValues[5] = data.GetElementAsFloat(2); // id
-
+            sessionIdToObjId[s] = i;
             InstrumentPositions[i] = new Vector2(x, y);
         }
         else if (command == "alive")
         {
             int number = data.GetElementCount();
 
-            StringBuilder sb = new StringBuilder();
+            List<int> currentSessionElementsList = new List<int>();
             for (int i = 1; i < number; i++)
             {
-                if (i > 1) sb.Append(" , ");
-                sb.Append(data.GetElementAsInt(i));
+                currentSessionElementsList.Add(data.GetElementAsInt(i));
             }
-            Debug.Log(sb.ToString());
+
+            foreach (int sessionId in previousSessionElementsList)
+            {
+                if (!currentSessionElementsList.Contains(sessionId))
+                {
+                    // Debug.Log($"Session ID retiré: {sessionId}");
+                    if (sessionIdToObjId.TryGetValue(sessionId, out int objId))
+                    {
+                        // Debug.Log($"ID d'objet correspondant: {objId}");
+                        idsToDestroy.Enqueue(objId);
+                    }
+                }
+            }
+
+            previousSessionElementsList = new List<int>(currentSessionElementsList);
         }
     }
     

@@ -140,7 +140,41 @@ public class GameController : MonoBehaviour
     }
 
 
+    public static void DestroyPiano()
+    {
+        GameObject piano = GameObject.Find("pianoPrefab0");
+        if(piano) Destroy(piano);
+    }
 
+    public static void DestroyGuitare()
+    {
+        GameObject guitare = GameObject.Find("guitarePrefab0");
+        if(guitare) Destroy(guitare);
+    }
+    
+    public static void DestroyBattery()
+    {
+        GameObject battery = GameObject.Find("batteryPrefab0");
+        if(battery) Destroy(battery);
+    }
+    
+    public static void DestroyViolon()
+    {
+        GameObject violon = GameObject.Find("violonPrefab0");
+        if(violon) Destroy(violon);
+    }
+    
+    public static void DestroyMusique()
+    {
+        GameObject musique = GameObject.Find("musiquePrefab0");
+        if(musique) Destroy(musique);
+    }
+    
+    public static void DestroyReponse()
+    {
+        GameObject reponse = GameObject.Find("reponsePrefab0");
+        if(reponse) Destroy(reponse);
+    }
 
 
 }
