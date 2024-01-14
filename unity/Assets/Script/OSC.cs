@@ -24,6 +24,8 @@ public class OSC : MonoBehaviour
     private List<int> previousSessionElementsList = new List<int>();
     private Queue<int> idsToDestroy = new Queue<int>();
 
+    public WebSocketClient webSocketClient;
+
 
 
     void Start()
@@ -82,6 +84,7 @@ public class OSC : MonoBehaviour
                     break;
             }
         }
+
     }
 
     private void OnDestroy()
@@ -105,14 +108,50 @@ public class OSC : MonoBehaviour
             float Y = data.GetElementAsFloat(5);
             float m = data.GetElementAsFloat(6);
 
-            // Debug.Log($"2Dcur - Session: {s}, Position: ({x}, {y}), Velocity: ({X}, {Y}), MotionAcceleration: {m}");
-            
+            if (InstrumentPositions.TryGetValue(4, out Vector2 reponsePosition))
+            {
+                // Taille des zones de réponse (à ajuster selon votre setup)
+                float objectWidth = 1.0f; // La largeur totale de l'objet de réponse
+                float objectHeight = 1.0f; // La hauteur totale de l'objet de réponse
+                float padding = 0.25f; // Espace supplémentaire autour de l'objet pour agrandir la zone cliquable
+
+                float left = reponsePosition.x - objectWidth / 2 - padding;
+                float right = reponsePosition.x + objectWidth / 2 + padding;
+                float top = reponsePosition.y + objectHeight / 2 + padding;
+                float bottom = reponsePosition.y - objectHeight / 2 - padding;
+
+
+                // Vérifiez dans quelle zone se trouve le clic
+                if (x >= left && x < reponsePosition.x && y >= reponsePosition.y && y < top)
+                {
+                    webSocketClient.OnAnswerButtonClicked("C"); // Haut gauche - Réponse C
+                }
+                else if (x >= reponsePosition.x && x < right && y >= reponsePosition.y && y < top)
+                {
+                    webSocketClient.OnAnswerButtonClicked("D"); // Haut droit - Réponse D
+                }
+                else if (x >= left && x < reponsePosition.x && y < reponsePosition.y && y >= bottom)
+                {
+                    webSocketClient.OnAnswerButtonClicked("A"); // Bas gauche - Réponse A
+                }
+                else if (x >= reponsePosition.x && x < right && y < reponsePosition.y && y >= bottom)
+                {
+                    webSocketClient.OnAnswerButtonClicked("B"); // Bas droit - Réponse B
+                }
+            }
+
         }
+
         else if (command == "alive")
         {
             Debug.Log(data.GetElementAsInt(1));
         }
     }
+
+    // Debug.Log($"2Dcur - Session: {s}, Position: ({x}, {y}), Velocity: ({X}, {Y}), MotionAcceleration: {m}");
+
+        
+        
 
     void Process2DObj(string address, OscDataHandle data)
     {

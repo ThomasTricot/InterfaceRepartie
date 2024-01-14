@@ -171,6 +171,7 @@ public class GameController : MonoBehaviour
     {
         GameObject musique = GameObject.Find("musiquePrefab0");
         if(musique) Destroy(musique);
+        GameController.Instance.ToggleSound();
     }
     
     public static void DestroyReponse()
@@ -181,9 +182,8 @@ public class GameController : MonoBehaviour
 
     public static void DestroyValidate()
     {
-        GameObject reponse = GameObject.Find("validatePrefab0");
-        Debug.Log(reponse);
-        if(reponse) Destroy(reponse);
+        GameObject validate = GameObject.Find("validatePrefab0");
+        if(validate) Destroy(validate);
     }
 
 }

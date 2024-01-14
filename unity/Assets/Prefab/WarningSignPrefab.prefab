@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1569923090986379461}
   - component: {fileID: 1845412351440251551}
+  - component: {fileID: 920469774613241412}
   m_Layer: 0
   m_Name: WarningSignPrefab
   m_TagString: Untagged
@@ -47,6 +48,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613687613515605317}
   m_CullTransparentMesh: 1
+--- !u!114 &920469774613241412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613687613515605317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a2c2e067961bd4a9156e3f5cc08957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50
 --- !u!1 &3380027365137970328
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,8 +96,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.795, y: -8.999992}
-  m_SizeDelta: {x: 899.87, y: 60.808}
+  m_AnchoredPosition: {x: 0, y: -0.00001335144}
+  m_SizeDelta: {x: 414.8693, y: 9.6702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7232401192046698423
 CanvasRenderer:
@@ -158,8 +172,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: -9}
-  m_SizeDelta: {x: 941.461, y: 110.808}
+  m_AnchoredPosition: {x: 5.5736, y: -0.00011444}
+  m_SizeDelta: {x: 476.0166, y: 59.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &17560939844250342
 CanvasRenderer:
@@ -189,8 +203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vite ! Il faut poser l'objet \"r\xE9ponse\" afin de pouvoir r\xE9pondre
-    \xE0 la question au tableau"
+  m_text: Question au tableau!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -253,7 +266,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -2.1742554, y: 0, z: -1.5032959, w: 0}
+  m_margin: {x: -0.2185669, y: 0, z: 6.319275, w: 31.29039}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

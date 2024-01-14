@@ -722,6 +722,7 @@ MonoBehaviour:
   textMesh: {fileID: 795802677}
   text: 
   sessionElementsList: 
+  webSocketClient: {fileID: 802809206}
 --- !u!114 &802809208
 MonoBehaviour:
   m_ObjectHideFlags: 0

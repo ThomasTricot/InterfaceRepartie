@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ca216ec3d71224fa0b479bd12d2d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+  selectedTextColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!114 &3897269681230849457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ca216ec3d71224fa0b479bd12d2d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+  selectedTextColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!114 &4361861324207670806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ca216ec3d71224fa0b479bd12d2d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+  selectedTextColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!224 &3345985693805470643 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1569923090986379461, guid: 7faebf646cfe87a4c8a0be60f6a66db4, type: 3}
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ca216ec3d71224fa0b479bd12d2d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+  selectedTextColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1001 &8787799620943354088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -832,4 +832,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ca216ec3d71224fa0b479bd12d2d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+  selectedTextColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
