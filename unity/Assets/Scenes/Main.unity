@@ -674,7 +674,7 @@ MonoBehaviour:
   messagePrefab: {fileID: 1613687613515605317, guid: 1117b2f80e42fcd458ce217e36d778f1, type: 3}
   canvas: {fileID: 566634585}
   answerSelected: 0
-  musiqueTableau: {fileID: 8300000, guid: 8f3cb5a777bf5b64d9034cec1bfc2126, type: 3}
+  musiqueTableau: {fileID: 0}
 --- !u!114 &802809205
 MonoBehaviour:
   m_ObjectHideFlags: 0

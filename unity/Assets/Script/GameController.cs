@@ -35,12 +35,14 @@ public class GameController : MonoBehaviour
 
     public void ToggleSound()
     {
+        Debug.Log("Toggle");
+        
         isSoundOn = !isSoundOn;
         AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
 
         foreach (AudioSource audioSource in allAudioSources)
         {
-            if (audioSource != musicSource) // Ignore seulement musicSource
+            if (audioSource.gameObject.name != "musiquePrefab0") // Ignore le GameObject nommé musiquePrefab0
             {
                 if (isSoundOn)
                 {
@@ -53,6 +55,7 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
 
 
     // Jouer un clip directement avec AudioSource.PlayClipAtPoint(clip, position)
@@ -105,7 +108,7 @@ public class GameController : MonoBehaviour
     public void MusicPlaced()
     {
         ToggleSound(); // Bascule le son
-        CreateAndPlayMusic();
+        // CreateAndPlayMusic();
     }
 
     public void CreateAndPlayMusic()
@@ -176,5 +179,11 @@ public class GameController : MonoBehaviour
         if(reponse) Destroy(reponse);
     }
 
+    public static void DestroyValidate()
+    {
+        GameObject reponse = GameObject.Find("validatePrefab0");
+        Debug.Log(reponse);
+        if(reponse) Destroy(reponse);
+    }
 
 }

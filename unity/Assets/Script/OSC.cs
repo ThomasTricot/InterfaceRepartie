@@ -68,7 +68,7 @@ public class OSC : MonoBehaviour
                     break;
                 case 4:
                     InstrumentPositions[4] = Vector2.zero;
-                    GameController.DestroyViolon();
+                    GameController.DestroyReponse();
                     break;
                 case 5:
                     InstrumentPositions[5] = Vector2.zero;
@@ -76,7 +76,7 @@ public class OSC : MonoBehaviour
                     break;
                 case 6:
                     InstrumentPositions[6] = Vector2.zero;
-                    GameController.DestroyReponse();
+                    GameController.DestroyValidate();
                     break;
                 default:
                     break;
