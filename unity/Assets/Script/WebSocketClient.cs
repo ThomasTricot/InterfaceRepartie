@@ -42,7 +42,7 @@ public class WebSocketClient : MonoBehaviour
 
     void Start()
     {
-        ws = new WebSocket("ws://localhost:8080");
+        ws = new WebSocket("ws://192.168.1.7:8080");
         ws.OnOpen += (sender, e) => Debug.Log("Connecté au serveur WebSocket.");
         ws.OnMessage += (sender, e) =>
         {
