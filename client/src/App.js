@@ -10,6 +10,7 @@ const App = () => {
     const [timeIsUp, setTimeIsUp] = useState(false);
     const [timer, setTimer] = useState(30);
     const [activeCircles, setActiveCircles] = useState([]);
+    const [midCircles, setMidCircles] = useState([]);
     const [socket, setSocket] = useState(null);
     const [logoImage, setLogoImage] = useState("resume.png");
     const audioRef = useRef(null);
@@ -26,7 +27,7 @@ const App = () => {
                     setIsWaiting(false);
                     break;
                 case 'tableFinished':
-                    setActiveCircles(prev => [...new Set([...prev, data.tableId])]);
+                    setMidCircles(prev => [...new Set([...prev, data.tableId])]);
                     break;
                 case 'answerResult':
                     if (!timeIsUpRef.current) {
@@ -93,7 +94,7 @@ const App = () => {
     useEffect(() => {
         let interval;
         if (!isWaiting) {
-            setTimer(3);
+            setTimer(30);
             setTimeIsUp(false);
             interval = setInterval(() => {
                 setTimer(prevTimer => {
@@ -130,6 +131,7 @@ const App = () => {
             }
     
             if (isCircleAlreadyActive) {
+                setMidCircles(prevMidCircles => prevMidCircles.filter(num => num !== circleNumber));
                 return prevActiveCircles.filter(num => num !== circleNumber);
             } else {
                 return [...prevActiveCircles, circleNumber];
@@ -151,7 +153,7 @@ const App = () => {
                     <audio ref={correctSoundRef} src="correct.mp3" preload="auto" />
                 </div>
                 <div className='circles'>
-                    <CirclesGrid activeCircles={activeCircles} onCircleClick={handleCircleClick} />
+                    <CirclesGrid midCircles={midCircles} activeCircles={activeCircles} onCircleClick={handleCircleClick} />
                 </div>
             </div>
             {isWaiting ? (
