@@ -159,17 +159,17 @@ public class OSC : MonoBehaviour
 
         if (command == "set")
         {
-            //text = data.GetElementAsString(2);
+            text = data.GetElementAsString(2);
             string stringToInt = data.GetElementAsString(2);
-            //int i;
-            //try
-            //{
-            //    i = int.Parse(stringToInt.Substring(0, 1));
-            //}
-            //catch
-            //{
-            //    i = 0;
-            //}
+            int i;
+            try
+            {
+                i = int.Parse(stringToInt.Substring(0, 1));
+            }
+            catch
+            {
+                i = 0;
+            }
             
             int s = (int)data.GetElementAsFloat(1);
             float x = data.GetElementAsFloat(3);
@@ -182,13 +182,13 @@ public class OSC : MonoBehaviour
             float r = data.GetElementAsFloat(10);
 
             // Debug.Log($"2Dobj - Session: {s}, ClassId: {i}, Position: ({x}, {y}), Angle: {a}, Velocity: ({X}, {Y}, {A}), MotionAcceleration: {m}, RotationAcceleration: {r}");
-             text = "2Dobj - Session: " + s + " ClassId: " + stringToInt + " Position: (" + x + "," + y + "), Angle: " +
-                             a + " Velocity: (" + X + "," + Y + ", " + A + "), MotionAcceleration: " + m +
-                             " , RotationAcceleration: " + r;
-            
-            //sessionIdToObjId[s] = i;
-            //InstrumentPositions[i] = new Vector2(x, y);
-            //InstrumentRotations[i] = a;
+             // text = "2Dobj - Session: " + s + " ClassId: " + stringToInt + " Position: (" + x + "," + y + "), Angle: " +
+             //                 a + " Velocity: (" + X + "," + Y + ", " + A + "), MotionAcceleration: " + m +
+             //                 " , RotationAcceleration: " + r;
+             //
+            sessionIdToObjId[s] = i;
+            InstrumentPositions[i] = new Vector2(x, y);
+            InstrumentRotations[i] = a;
         }
         else if (command == "alive")
         {
