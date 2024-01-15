@@ -182,9 +182,9 @@ public class OSC : MonoBehaviour
             float r = data.GetElementAsFloat(10);
 
             // Debug.Log($"2Dobj - Session: {s}, ClassId: {i}, Position: ({x}, {y}), Angle: {a}, Velocity: ({X}, {Y}, {A}), MotionAcceleration: {m}, RotationAcceleration: {r}");
-            // text = "2Dobj - Session: " + s + " ClassId: " + i + " Position: (" + x + "," + y + "), Angle: " +
-            //                 a + " Velocity: (" + X + "," + Y + ", " + A + "), MotionAcceleration: " + m +
-            //                 " , RotationAcceleration: " + r;
+             text = "2Dobj - Session: " + s + " ClassId: " + stringToInt + " Position: (" + x + "," + y + "), Angle: " +
+                             a + " Velocity: (" + X + "," + Y + ", " + A + "), MotionAcceleration: " + m +
+                             " , RotationAcceleration: " + r;
             
             sessionIdToObjId[s] = i;
             InstrumentPositions[i] = new Vector2(x, y);
