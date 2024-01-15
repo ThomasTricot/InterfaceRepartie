@@ -30,7 +30,7 @@ public class OSC : MonoBehaviour
 
     void Start()
     {
-        
+        textMesh.text = "testing ...";
         Debug.Log("OSC INITIALISED");
 
         server = new OscServer(3333);
