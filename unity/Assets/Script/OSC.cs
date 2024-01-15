@@ -159,17 +159,17 @@ public class OSC : MonoBehaviour
 
         if (command == "set")
         {
-            text = data.GetElementAsString(2);
+            //text = data.GetElementAsString(2);
             string stringToInt = data.GetElementAsString(2);
-            int i;
-            try
-            {
-                i = int.Parse(stringToInt.Substring(0, 1));
-            }
-            catch
-            {
-                i = 0;
-            }
+            //int i;
+            //try
+            //{
+            //    i = int.Parse(stringToInt.Substring(0, 1));
+            //}
+            //catch
+            //{
+            //    i = 0;
+            //}
             
             int s = (int)data.GetElementAsFloat(1);
             float x = data.GetElementAsFloat(3);
@@ -186,9 +186,9 @@ public class OSC : MonoBehaviour
                              a + " Velocity: (" + X + "," + Y + ", " + A + "), MotionAcceleration: " + m +
                              " , RotationAcceleration: " + r;
             
-            sessionIdToObjId[s] = i;
-            InstrumentPositions[i] = new Vector2(x, y);
-            InstrumentRotations[i] = a;
+            //sessionIdToObjId[s] = i;
+            //InstrumentPositions[i] = new Vector2(x, y);
+            //InstrumentRotations[i] = a;
         }
         else if (command == "alive")
         {
