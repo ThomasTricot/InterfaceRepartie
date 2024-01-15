@@ -693,6 +693,7 @@ MonoBehaviour:
   violonPrefab: {fileID: 1613687613515605317, guid: b32a85999da396b4289050667933ad33, type: 3}
   musiquePrefab: {fileID: 1613687613515605317, guid: 26de878558218ee44ad59f83fe3116bc, type: 3}
   validatePrefab: {fileID: 1613687613515605317, guid: bfb1241df6ee8a44b944aadfd031fac8, type: 3}
+  BpmPrefab: {fileID: 356311760405160706, guid: 8da7678b1d8f09d4f9f124a2d8509c97, type: 3}
   reponsePrefab: {fileID: 1613687613515605317, guid: 6690ff67efd5d9e47830ebced273033d, type: 3}
 --- !u!114 &802809206
 MonoBehaviour:

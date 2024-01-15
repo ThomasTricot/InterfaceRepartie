@@ -11,6 +11,8 @@ public class InstrumentSpawner : MonoBehaviour
 
     public GameObject musiquePrefab;
     public GameObject validatePrefab;
+    public GameObject BpmPrefab;
+    public Vector2 positionAdjustment = new Vector2(-1000, -1000);
 
     private static Canvas canvas;
     private PianoChangeNote pianoChangeNote;
@@ -44,6 +46,12 @@ public class InstrumentSpawner : MonoBehaviour
     {
         canvas = FindObjectOfType<Canvas>();
         name = "";
+        if (canvas != null)
+        {
+            GameObject spawnedObject = Instantiate(BpmPrefab, canvas.transform, false);
+            RectTransform rectTransform = spawnedObject.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition += positionAdjustment;
+        }
     }
 
     void Update()
