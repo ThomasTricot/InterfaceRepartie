@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Circle = ({ number, isActive, onClick }) => {
+const Circle = ({ number, isAnswer, isActive, onClick }) => {
     const style = {
         width: '120px',
         height: '120px',
         borderRadius: '50%',
-        backgroundColor: isActive ? '#4CAF50' : 'lightgray',
+        backgroundColor: isActive ? '#4CAF50' : (isAnswer ? 'orange' : 'lightgray'),
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

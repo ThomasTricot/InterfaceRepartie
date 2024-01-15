@@ -18,8 +18,11 @@ const Response = ({ label, text, responses, isCorrect, timeIsUp }) => {
             {showSeparator && <div className="response-separator"></div>}
             <div className="response-remaining">
                 {responses && responses.map((tableResponse, index) => (
-                    <div key={index} className="table-response-circle" style={{ left: `${20 + 100 * index}px` }}>
-                        {tableResponse.tableId} (#{tableResponse.order})
+                    <div key={index} className="table-response-circle">
+                        {tableResponse.tableId}
+                        <div className={`order-indicator ${tableResponse.order === 1 ? "first-place" : ""}`}>
+                            #{tableResponse.order}
+                        </div>
                     </div>
                 ))}
             </div>
