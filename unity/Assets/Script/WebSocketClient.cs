@@ -2,6 +2,8 @@ using UnityEngine;
 using WebSocketSharp;
 using PimDeWitte.UnityMainThreadDispatcher;
 using TMPro;
+using System;
+
 
 public class WebSocketClient : MonoBehaviour
 {
@@ -42,7 +44,7 @@ public class WebSocketClient : MonoBehaviour
 
     void Start()
     {
-        ws = new WebSocket("ws://192.168.1.3:8080");
+        ws = new WebSocket("ws://localhost:8080");
         ws.OnOpen += (sender, e) => Debug.Log("Connecté au serveur WebSocket.");
         ws.OnMessage += (sender, e) =>
         {
@@ -115,24 +117,33 @@ public class WebSocketClient : MonoBehaviour
     }
 
     public void OnAnswerButtonClicked(string answer)
+{
+    UnityMainThreadDispatcher.Instance().Enqueue(() => ChangeColor(answer));
+}
+
+private void ChangeColor(string answer)
+{
+    // Votre logique pour changer la couleur
+    TextMeshProUGUI[] allTexts = FindObjectsOfType<TextMeshProUGUI>();
+    string[] responseIdentifiers = new string[] { "reponsePrefabA", "reponsePrefabB", "reponsePrefabC", "reponsePrefabD" };
+
+    foreach (TextMeshProUGUI textComp in allTexts)
     {
-        if (!GameController.Instance.answerSelected) // Utilise l'indicateur de GameController
+        if (Array.Exists(responseIdentifiers, id => id == textComp.transform.parent.name))
         {
-            Debug.Log($"Réponse {answer} sélectionnée. id table {idTable}");
-            SendAnswer(answer,idTable);
-            GameController.Instance.answerSelected = true; // Met à jour l'indicateur dans GameController
-
-            // Réactive les audios (sauf warning) dans GameController
-            GameController.Instance.ToggleSound();
-
-            // Change la couleur du texte du bouton
-            TextMeshProUGUI textComp = GetComponentInChildren<TextMeshProUGUI>();
-            if (textComp != null)
-            {
-                textComp.color = selectedTextColor;
-            }
+            textComp.color = (textComp.transform.parent.name == $"reponsePrefab{answer}") ? selectedTextColor : Color.white;
         }
     }
+
+    // Autres logiques comme l'envoi de la réponse
+    SendAnswer(answer, idTable);
+}
+
+
+
+
+
+
 
     private void HandleQuestionReceived()
     {
