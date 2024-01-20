@@ -58,24 +58,24 @@ public class BatteryMovement : MonoBehaviour
         AudioSource audioSource = battery.GetComponent<AudioSource>();
         if (audioSource != null)
         {
-            float minDistance = 60.0f;
-            float maxDistance = 250.0f;
-            float minVolume = 0.2f;
-            float maxVolume = 1.0f;
+            float minDistance = 60.0f; // La distance pour le volume maximal
+            float maxDistance = 250.0f; // La distance pour le volume minimal
+            float minVolume = 0.1f; // Le volume minimal
+            float maxVolume = 1.0f; // Le volume maximal
 
             if (distance <= minDistance)
             {
-                audioSource.volume = minVolume;
+                audioSource.volume = maxVolume;
             }
             else if (distance >= maxDistance)
             {
-                audioSource.volume = maxVolume;
+                audioSource.volume = minVolume;
             }
             else
             {
-                // Interpolation linéaire entre minVolume et maxVolume
+                // Interpolation linéaire entre maxVolume et minVolume
                 float t = (distance - minDistance) / (maxDistance - minDistance);
-                audioSource.volume = Mathf.Lerp(minVolume, maxVolume, t);
+                audioSource.volume = Mathf.Lerp(maxVolume, minVolume, t);
             }
 
             Debug.Log($"Distance: {distance}, Volume: {audioSource.volume}");
@@ -85,6 +85,8 @@ public class BatteryMovement : MonoBehaviour
             Debug.LogError("AudioSource is missing on the battery");
         }
     }
+
+
 
 
 
