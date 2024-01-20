@@ -8,6 +8,8 @@ const questions = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 let clientId = 0;
 let clients = {};
 
+console.log('Serveur WebSocket lancé sur le port 8080');
+
 server.on('connection', socket => {
   const currentClientId = ++clientId;
   clients[currentClientId] = socket;
@@ -37,6 +39,13 @@ server.on('connection', socket => {
       response = {
         type: 'tableFinished',
         tableId: data.tableId
+      }
+    } else if (data.type ==='submitFinalTeacher') {
+      console.log('Received answer from client', currentClientId, ':', data);
+      response = {
+        type: 'tableFinishedWithCorrect',
+        tableId: data.tableId,
+        correct: data.isCorrect
       }
     }
 

@@ -9,8 +9,10 @@ const App = () => {
     const [isWaiting, setIsWaiting] = useState(true);
     const [timeIsUp, setTimeIsUp] = useState(false);
     const [timer, setTimer] = useState(30);
-    const [activeCircles, setActiveCircles] = useState([]);
-    const [midCircles, setMidCircles] = useState([]);
+
+    const [teacherCircles, setTeacherCircles] = useState([]);
+    const [studentCircles, setStudentCircles] = useState([]);
+
     const [socket, setSocket] = useState(null);
     const [logoImage, setLogoImage] = useState("resume.png");
     const audioRef = useRef(null);
@@ -27,7 +29,21 @@ const App = () => {
                     setIsWaiting(false);
                     break;
                 case 'tableFinished':
-                    setMidCircles(prev => [...new Set([...prev, data.tableId])]);
+                    setStudentCircles(prev => [...new Set([...prev, Number(data.tableId)])]);
+                    setTeacherCircles(prev => {
+                        const newCircles = { ...prev };
+                        if (newCircles[Number(data.tableId)] !== true) {
+                            delete newCircles[Number(data.tableId)];
+                        }
+                        return newCircles;
+                    });
+                    break;
+                case 'tableFinishedWithCorrect':
+                    setTeacherCircles(prev => {
+                        const newCircles = { ...prev };
+                        newCircles[Number(data.tableId)] = data.correct;
+                        return newCircles;
+                    });
                     break;
                 case 'answerResult':
                     if (!timeIsUpRef.current) {
@@ -122,23 +138,6 @@ const App = () => {
         }
     };
 
-    const handleCircleClick = (circleNumber) => {
-        setActiveCircles(prevActiveCircles => {
-            const isCircleAlreadyActive = prevActiveCircles.includes(circleNumber);
-    
-            if (!isCircleAlreadyActive) {
-                correctSoundRef.current.play();
-            }
-    
-            if (isCircleAlreadyActive) {
-                setMidCircles(prevMidCircles => prevMidCircles.filter(num => num !== circleNumber));
-                return prevActiveCircles.filter(num => num !== circleNumber);
-            } else {
-                return [...prevActiveCircles, circleNumber];
-            }
-        });
-    };
-
     return (
         <div className="App">
             <div className="content-container">
@@ -153,7 +152,7 @@ const App = () => {
                     <audio ref={correctSoundRef} src="correct.mp3" preload="auto" />
                 </div>
                 <div className='circles'>
-                    <CirclesGrid midCircles={midCircles} activeCircles={activeCircles} onCircleClick={handleCircleClick} />
+                    <CirclesGrid studentCircles={studentCircles} teacherCircles={teacherCircles} />
                 </div>
             </div>
             {isWaiting ? (

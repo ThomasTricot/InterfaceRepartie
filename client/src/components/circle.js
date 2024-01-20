@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Circle = ({ number, isAnswer, isActive, onClick }) => {
+const Circle = ({ number, studentValidation, teacherValidation, onClick }) => {
     const style = {
         width: '120px',
         height: '120px',
         borderRadius: '50%',
-        backgroundColor: isActive ? '#4CAF50' : (isAnswer ? 'orange' : 'lightgray'),
+        backgroundColor: teacherValidation === true ? '#4CAF50' : (teacherValidation === false ? 'lightgray' : (studentValidation ? 'orange' : 'lightgray')),
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -14,7 +14,7 @@ const Circle = ({ number, isAnswer, isActive, onClick }) => {
         position: 'relative', // Ajouté pour le positionnement de la pseudo-élément
     };
 
-    const waitingClass = !isActive ? 'waiting' : ''; // Classe pour l'effet d'attente
+    const waitingClass = !teacherValidation ? 'waiting' : '';
 
     return (
         <div style={style} onClick={onClick} className={waitingClass}>
