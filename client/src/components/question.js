@@ -19,7 +19,8 @@ const Response = ({ label, text, responses, isCorrect, timeIsUp }) => {
             <div className="response-remaining">
                 {responses && responses.map((tableResponse, index) => (
                     <div key={index} className="table-response-circle">
-                        {tableResponse.tableId}
+                        <div className='circle-number'>{tableResponse.tableId}</div>
+                        <img src="table.png" alt="Table" className="circle-image" />
                         <div className={`order-indicator ${tableResponse.order === 1 ? "first-place" : ""}`}>
                             #{tableResponse.order}
                         </div>
@@ -43,20 +44,6 @@ const Question = ({ questionData, tableResponses, timeIsUp, timer }) => {
     Object.keys(responsesByLabel).forEach(label => {
         responsesByLabel[label].sort((a, b) => a.order - b.order);
     });
-
-    /*
-    useEffect(() => {
-        if (timer <= 5 && !soundPlayed) {
-            const audio = new Audio('chrono.mp3');
-            audio.play();
-            setSoundPlayed(true);
-        }
-
-        if (timer === 30) {
-            setSoundPlayed(false);
-        }
-    }, [timer]);
-    */
 
     useEffect(() => {
         if (timer === 0) {

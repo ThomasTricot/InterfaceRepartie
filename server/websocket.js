@@ -20,7 +20,8 @@ server.on('connection', socket => {
     let response;
 
     if (data.type === 'requestQuestion') {
-      const questionData = getRandomQuestion();
+      console.log('question request from client', currentClientId, ':', data);
+      const questionData = getRandomQuestion(data.exclude);
       response = {
         type: 'question',
         question: questionData,
@@ -60,10 +61,12 @@ server.on('connection', socket => {
   };
 });
 
-function getRandomQuestion() {
-  const randomIndex = Math.floor(Math.random() * questions.length);
-  return {
-    questionId: randomIndex,
-    ...questions[randomIndex]
-  };
+function getRandomQuestion(exclude = []) {
+  let possibleQuestions = questions.filter(question => !exclude.includes(question.id));
+  if (possibleQuestions.length === 0) {
+    return null;
+  }
+  let randomIndex = Math.floor(Math.random() * possibleQuestions.length);
+  return possibleQuestions[randomIndex];
 }
+

@@ -4,6 +4,8 @@ import CirclesGrid from './components/circlegrid.js';
 import './App.css'
 
 const App = () => {
+    const [competitionMode, setCompetitionMode] = useState(true);
+
     const [questionData, setQuestionData] = useState({ question: '', answers: {} });
     const [tableResponses, setTableResponses] = useState({});
     const [isWaiting, setIsWaiting] = useState(true);
@@ -12,6 +14,8 @@ const App = () => {
 
     const [teacherCircles, setTeacherCircles] = useState([]);
     const [studentCircles, setStudentCircles] = useState([]);
+    const [askedQuestions, setAskedQuestions] = useState(new Set());
+    const [allQuestionsExhausted, setAllQuestionsExhausted] = useState(false);
 
     const [socket, setSocket] = useState(null);
     const [logoImage, setLogoImage] = useState("resume.png");
@@ -19,14 +23,26 @@ const App = () => {
     const timeIsUpRef = useRef(false);
     const correctSoundRef = useRef(null);
 
+    const handleCompetitionModeClick = () => {
+        setCompetitionMode(false);
+    };
+
     const handleWebSocketMessages = (event) => {
         console.log("Received data:", event.data);
         try {
             const data = JSON.parse(event.data);
             switch (data.type) {
                 case 'question':
-                    setQuestionData(data.question);
-                    setIsWaiting(false);
+                    if (data.question === null) {
+                        // Toutes les questions sont épuisées
+                        setAllQuestionsExhausted(true);
+                        setIsWaiting(true);
+                    } else {
+                        setQuestionData(data.question);
+                        setIsWaiting(false);
+                        setTableResponses({});
+                        setAskedQuestions(prev => new Set(prev).add(data.question.id));
+                    }
                     break;
                 case 'tableFinished':
                     setStudentCircles(prev => [...new Set([...prev, Number(data.tableId)])]);
@@ -88,24 +104,26 @@ const App = () => {
     }, [questionData]); 
 
     useEffect(() => {
-        const newSocket = new WebSocket('ws://localhost:8080');
-        newSocket.onmessage = handleWebSocketMessages;
-        newSocket.onopen = () => {
-            const delay = Math.floor(Math.random() * (20 + 1)) + 1;
-            setTimeout(() => {
-                newSocket.send(JSON.stringify({ type: 'requestQuestion' }));
-                setIsWaiting(true);
-            }, delay);
-        };
-        newSocket.onclose = () => console.log('Disconnected from server');
-        newSocket.onerror = (error) => console.log('WebSocket error:', error);
-        setSocket(newSocket);
+        if (!competitionMode) {
+            const newSocket = new WebSocket('ws://localhost:8080');
+            newSocket.onmessage = handleWebSocketMessages;
+            newSocket.onopen = () => {
+                const delay = Math.floor(Math.random() * (20 + 1)) + 20;
+                setTimeout(() => {
+                    newSocket.send(JSON.stringify({ type: 'requestQuestion' }));
+                    setIsWaiting(true);
+                }, delay * 1000);
+            };
+            newSocket.onclose = () => console.log('Disconnected from server');
+            newSocket.onerror = (error) => console.log('WebSocket error:', error);
+            setSocket(newSocket);
 
-        // Supprimer l'intervalle ici
-        return () => {
-            newSocket.close();
-        };
-    }, []);
+            // Supprimer l'intervalle ici
+            return () => {
+                newSocket.close();
+            };
+        }
+    }, [competitionMode]);
 
     useEffect(() => {
         let interval;
@@ -138,35 +156,75 @@ const App = () => {
         }
     };
 
+    useEffect(() => {
+        let timeout;
+        if (timeIsUp) {
+            timeout = setTimeout(() => {
+                setIsWaiting(true);
+                setQuestionData({ question: '', answers: {} });
+                setTableResponses({}); // Ajouté pour réinitialiser les réponses
+    
+                const delay = Math.floor(Math.random() * (15 + 1)) + 20;
+                console.log('Excluding questions:', Array.from(askedQuestions));
+
+                setTimeout(() => {
+                    if (socket && socket.readyState === WebSocket.OPEN) {
+                        socket.send(JSON.stringify({
+                            type: 'requestQuestion', 
+                            exclude: Array.from(askedQuestions)
+                        }));
+                        console.log('Sending request with exclude:', Array.from(askedQuestions));
+                    }
+                }, delay * 1000);
+            }, 15000);
+        }
+        return () => clearTimeout(timeout);
+    }, [timeIsUp, socket, askedQuestions]);
+
     return (
         <div className="App">
-            <div className="content-container">
-                <div className="media-container">
-                    <img 
-                        src={logoImage} 
-                        onClick={togglePlay} 
-                        className="music-logo" 
-                        alt="Play/Pause"
-                    />
-                    <audio ref={audioRef} src="musique.mp3" />
-                    <audio ref={correctSoundRef} src="correct.mp3" preload="auto" />
+            {competitionMode ? (
+                <div>
+                    <button className="competition-mode-button" onClick={handleCompetitionModeClick}>
+                        MODE COMPETITION
+                    </button>
+                    <button className="bacasable-mode-button">
+                        MODE BAC A SABLE
+                    </button>
                 </div>
-                <div className='circles'>
-                    <CirclesGrid studentCircles={studentCircles} teacherCircles={teacherCircles} />
-                </div>
-            </div>
-            {isWaiting ? (
-                <div className='waitingText'>Restez vigilant, une question peut arriver à n'importe quel moment...</div>
             ) : (
-                <Question
-                    questionData={questionData}
-                    tableResponses={tableResponses}
-                    timeIsUp={timeIsUp}
-                    timer={timer}
-                />
+                <div>
+                    <div className="content-container" style={{marginTop: '60px'}}>
+                        <div className="media-container">
+                            <img 
+                                src={logoImage} 
+                                onClick={togglePlay} 
+                                className="music-logo" 
+                                alt="Play/Pause"
+                            />
+                            <audio ref={audioRef} src="musique.mp3" />
+                            <audio ref={correctSoundRef} src="correct.mp3" preload="auto" />
+                        </div>
+                        <div className='circles'>
+                            <CirclesGrid studentCircles={studentCircles} teacherCircles={teacherCircles} />
+                        </div>
+                    </div>
+                    {allQuestionsExhausted ? (
+                        <div className='waitingText'>Toutes les questions sont écoulées. Concentrez-vous sur la table pour finir le plus vite possible.</div>
+                    ) : isWaiting ? (
+                        <div className='waitingText'>Restez vigilant ! Une question peut arriver à n'importe quel moment...</div>
+                    ) : (
+                        <Question
+                            questionData={questionData}
+                            tableResponses={tableResponses}
+                            timeIsUp={timeIsUp}
+                            timer={timer}
+                        />
+                    )}
+                </div>
             )}
         </div>
-    );     
+    );       
 };
 
 export default App;

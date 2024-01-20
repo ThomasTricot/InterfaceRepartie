@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "question": "Qui est le compositeur de la 5ème symphonie de Beethoven ?",
         "answers": {
             "A": "Wolfgang Amadeus Mozart",
@@ -10,6 +11,7 @@
         "correctAnswer": "C"
     },
     {
+        "id": 2,
         "question": "Quel groupe a enregistré l'album 'Dark Side of the Moon' ?",
         "answers": {
             "A": "The Beatles",
@@ -20,6 +22,7 @@
         "correctAnswer": "B"
     },
     {
+        "id": 3,
         "question": "En quelle année Michael Jackson a-t-il sorti l'album 'Thriller' ?",
         "answers": {
             "A": "1978",
@@ -30,6 +33,7 @@
         "correctAnswer": "B"
     },
     {
+        "id": 4,
         "question": "Quel instrument est principalement associé à Louis Armstrong ?",
         "answers": {
             "A": "Saxophone",
@@ -40,6 +44,7 @@
         "correctAnswer": "C"
     },
     {
+        "id": 5,
         "question": "Qui a écrit la chanson 'Imagine' ?",
         "answers": {
             "A": "Elton John",

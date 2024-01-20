@@ -26,10 +26,14 @@
 }
 
 .waitingText {
-    font-size: 60px;
-    margin-top: 100px;
+    font-size: 100px;
+    margin: 100px 100px;
     font-weight: bold;
+    text-align: center;
+    color: #2a2a2a;
+    text-shadow: 1px 1px 2px #000000;
 }
+
 
 .play-pause-button {
     background-color: #4CAF50;
@@ -62,5 +66,51 @@
 @keyframes spin {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.competition-mode-button {
+    font-size: 30px;
+    width: 300px;
+    font-weight: bold;
+    padding: 20px 40px;
+    background-color: #303841;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 50px;
+    transition: background-color 0.3s ease;
+
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.competition-mode-button:hover {
+    background-color: #000000;
+}
+
+.bacasable-mode-button {
+    font-size: 30px;
+    font-weight: bold;
+    width: 300px;
+    padding: 20px 40px;
+    background-color: #303841;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 50px;
+    transition: background-color 0.3s ease;
+
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bacasable-mode-button:hover {
+    background-color: #000000;
 }
 
