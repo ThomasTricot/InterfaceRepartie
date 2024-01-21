@@ -186,4 +186,10 @@ public class GameController : MonoBehaviour
         if(validate) Destroy(validate);
     }
 
+    public static void DestroyValidateTeacher()
+    {
+        GameObject validateTeacher = GameObject.Find("validateTeacherPrefab0");
+        if (validateTeacher) Destroy(validateTeacher);
+    }
+
 }

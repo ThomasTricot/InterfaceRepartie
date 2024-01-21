@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 566634592}
   - component: {fileID: 566634593}
   - component: {fileID: 566634594}
+  - component: {fileID: 566634598}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -603,6 +604,18 @@ MonoBehaviour:
   - {fileID: 1613687613515605317, guid: e0b8e4334fa0aff468aa41a42c1bb387, type: 3}
   - {fileID: 1613687613515605317, guid: c101da830e9b5304ca5da10fd6767a6b, type: 3}
   - {fileID: 1613687613515605317, guid: 92782427287a20b4ead613046e38edd8, type: 3}
+--- !u!114 &566634598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566634582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2605bf14918d16b428d4ace56b05847f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &795802676
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,8 +820,9 @@ MonoBehaviour:
   guitarePrefab: {fileID: 1613687613515605317, guid: ae35a7af8c2930f4b803ae9ee5a37c6f, type: 3}
   violonPrefab: {fileID: 1613687613515605317, guid: b32a85999da396b4289050667933ad33, type: 3}
   musiquePrefab: {fileID: 1613687613515605317, guid: 26de878558218ee44ad59f83fe3116bc, type: 3}
-  validatePrefab: {fileID: 1613687613515605317, guid: bfb1241df6ee8a44b944aadfd031fac8, type: 3}
+  validatePrefab: {fileID: 1613687613515605317, guid: 0c74f073d51b9e846be7d5641cdbb17a, type: 3}
   BpmPrefab: {fileID: 356311760405160706, guid: 8da7678b1d8f09d4f9f124a2d8509c97, type: 3}
+  validateTeacherPrefab: {fileID: 1613687613515605317, guid: a044de78ed5506b4ca6f28148f7f5d1f, type: 3}
   positionAdjustment: {x: -1000, y: -1000}
   reponsePrefab: {fileID: 1613687613515605317, guid: 6690ff67efd5d9e47830ebced273033d, type: 3}
 --- !u!114 &802809206

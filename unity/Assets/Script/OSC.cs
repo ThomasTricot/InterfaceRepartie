@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Text;
 using UnityEngine;
+using System;
 
 using OscJack;
 using PimDeWitte.UnityMainThreadDispatcher;
@@ -80,10 +81,15 @@ public class OSC : MonoBehaviour
                     InstrumentPositions[6] = Vector2.zero;
                     GameController.DestroyValidate();
                     break;
+                case 7:
+                    InstrumentPositions[7] = Vector2.zero;
+                    GameController.DestroyValidateTeacher();
+                    break;
                 default:
                     break;
             }
         }
+
 
     }
 
@@ -100,7 +106,7 @@ public class OSC : MonoBehaviour
         string command = data.GetElementAsString(0);
         if (command == "set")
         {
-            
+
             float s = data.GetElementAsFloat(1);
             float x = data.GetElementAsFloat(2);
             float y = data.GetElementAsFloat(3);
@@ -111,9 +117,9 @@ public class OSC : MonoBehaviour
             if (InstrumentPositions.TryGetValue(4, out Vector2 reponsePosition))
             {
                 // Taille des zones de réponse (à ajuster selon votre setup)
-                float objectWidth = 1.0f; // La largeur totale de l'objet de réponse
-                float objectHeight = 1.0f; // La hauteur totale de l'objet de réponse
-                float padding = 0.25f; // Espace supplémentaire autour de l'objet pour agrandir la zone cliquable
+                float objectWidth = 0.1f; // La largeur totale de l'objet de réponse
+                float objectHeight = 0.1f; // La hauteur totale de l'objet de réponse
+                float padding = 0.1f; // Espace supplémentaire autour de l'objet pour agrandir la zone cliquable
 
                 float left = reponsePosition.x - objectWidth / 2 - padding;
                 float right = reponsePosition.x + objectWidth / 2 + padding;
@@ -140,11 +146,32 @@ public class OSC : MonoBehaviour
                 }
             }
 
-        }
+            else if (InstrumentPositions.TryGetValue(7, out Vector2 validateTeacherPosition))
+            {
+                // Taille des zones de réponse (à ajuster selon votre setup)
+                float objectWidth = 0.1f; // La largeur totale de l'objet de réponse
+                float objectHeight = 0.1f; // La hauteur totale de l'objet de réponse
+                float padding = 0.1f; // Espace supplémentaire autour de l'objet pour agrandir la zone cliquable
 
-        else if (command == "alive")
-        {
-            Debug.Log(data.GetElementAsInt(1));
+                float left = validateTeacherPosition.x - objectWidth / 2 - padding;
+                float right = validateTeacherPosition.x + objectWidth / 2 + padding;
+                float top = validateTeacherPosition.y + objectHeight / 2 + padding;
+                float bottom = validateTeacherPosition.y - objectHeight / 2 - padding;
+
+                if (x >= left && x < validateTeacherPosition.x && y >= validateTeacherPosition.y && y < top)
+                {
+                    webSocketClient.SendFinishTeacher(1, true); // Haut gauche - Réponse C
+                }
+                else if (x >= validateTeacherPosition.x && x < right && y >= validateTeacherPosition.y && y < top)
+                {
+                    webSocketClient.SendFinishTeacher(1, false); // Haut droit - Réponse D
+                }
+            }
+
+            else if (command == "alive")
+            {
+                Debug.Log(data.GetElementAsInt(1));
+            }
         }
     }
 

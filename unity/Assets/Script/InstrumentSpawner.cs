@@ -12,6 +12,8 @@ public class InstrumentSpawner : MonoBehaviour
     public GameObject musiquePrefab;
     public GameObject validatePrefab;
     public GameObject BpmPrefab;
+    public GameObject validateTeacherPrefab;
+
     public Vector2 positionAdjustment = new Vector2(-1000, -1000);
 
     private static Canvas canvas;
@@ -132,6 +134,14 @@ public class InstrumentSpawner : MonoBehaviour
         {
             SpawnInstrumentAt(screenPosition, Instance.reponsePrefab, "reponsePrefab0");
             GameController.Instance.ResponsePlaced();
+        }
+    }
+
+    public static void SpawnValidateTeacherAt(Vector2 screenPosition)
+    {
+        if (Instance != null)
+        {
+            SpawnInstrumentAt(screenPosition, Instance.validateTeacherPrefab, "validateTeacherPrefab0");
         }
     }
 

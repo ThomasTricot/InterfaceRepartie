@@ -42,6 +42,15 @@ public class WebSocketClient : MonoBehaviour
         public int tableId;
     }
 
+    [System.Serializable]
+    public class FinishTeacherMessage
+    {
+        public string type;
+        public int tableId;
+        public bool isCorrect;
+    }
+
+
     void Start()
     {
         ws = new WebSocket("ws://localhost:8080");
@@ -102,6 +111,28 @@ public class WebSocketClient : MonoBehaviour
             Debug.LogError("La connexion WebSocket n'est pas ouverte.");
         }
     }
+
+    public void SendFinishTeacher(int tableID, bool isCorrect)
+    {
+        if (ws.ReadyState == WebSocketState.Open)
+        {
+            FinishTeacherMessage message = new FinishTeacherMessage
+            {
+                type = "submitFinalTeacher",
+                tableId = tableID,
+                isCorrect = isCorrect
+            };
+            string jsonMessage = JsonUtility.ToJson(message);
+            Debug.Log("Envoi de submitFinalTeacher: " + jsonMessage);
+            ws.Send(jsonMessage);
+        }
+        else
+        {
+            // Log d'erreur si la connexion WebSocket n'est pas ouverte
+            Debug.LogError("La connexion WebSocket n'est pas ouverte.");
+        }
+    }
+
 
     void Update()
     {
