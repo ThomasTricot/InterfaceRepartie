@@ -177,7 +177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6204396510462821681, guid: 0a5a248547706894fa779677ddc0e238, type: 3}
       propertyPath: m_text
-      value: "R\xE9ponse D"
+      value: D
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204396510462821681, guid: 0a5a248547706894fa779677ddc0e238, type: 3}
+      propertyPath: m_margin.x
+      value: 36.07361
       objectReference: {fileID: 0}
     - target: {fileID: 7888848306757228173, guid: 0a5a248547706894fa779677ddc0e238, type: 3}
       propertyPath: m_SizeDelta.x
@@ -362,6 +366,14 @@ PrefabInstance:
     - target: {fileID: 1613687613515605317, guid: 7faebf646cfe87a4c8a0be60f6a66db4, type: 3}
       propertyPath: m_Name
       value: reponsePrefabA
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204396510462821681, guid: 7faebf646cfe87a4c8a0be60f6a66db4, type: 3}
+      propertyPath: m_text
+      value: A
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204396510462821681, guid: 7faebf646cfe87a4c8a0be60f6a66db4, type: 3}
+      propertyPath: m_margin.x
+      value: 36.07361
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7faebf646cfe87a4c8a0be60f6a66db4, type: 3}
@@ -554,7 +566,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6204396510462821681, guid: 88ef06dad1ebdee46b44f9e622f899cd, type: 3}
       propertyPath: m_text
-      value: "R\xE9ponse B"
+      value: B
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204396510462821681, guid: 88ef06dad1ebdee46b44f9e622f899cd, type: 3}
+      propertyPath: m_margin.x
+      value: 37.200867
       objectReference: {fileID: 0}
     - target: {fileID: 7888848306757228173, guid: 88ef06dad1ebdee46b44f9e622f899cd, type: 3}
       propertyPath: m_SizeDelta.x
@@ -742,15 +758,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6204396510462821681, guid: eb12f5612142360459a3c337d5ea5e7f, type: 3}
       propertyPath: m_text
-      value: "R\xE9ponse C"
+      value: C
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204396510462821681, guid: eb12f5612142360459a3c337d5ea5e7f, type: 3}
+      propertyPath: m_margin.x
+      value: 29.309784
       objectReference: {fileID: 0}
     - target: {fileID: 7888848306757228173, guid: eb12f5612142360459a3c337d5ea5e7f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 79.0834
+      value: 13.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888848306757228173, guid: eb12f5612142360459a3c337d5ea5e7f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 16.3643
       objectReference: {fileID: 0}
     - target: {fileID: 7888848306757228173, guid: eb12f5612142360459a3c337d5ea5e7f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.3637
+      value: -26.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888848306757228173, guid: eb12f5612142360459a3c337d5ea5e7f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0000021458
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb12f5612142360459a3c337d5ea5e7f, type: 3}
