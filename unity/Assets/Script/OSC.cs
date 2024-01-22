@@ -186,7 +186,7 @@ public class OSC : MonoBehaviour
 
         if (command == "set")
         {
-            text = data.GetElementAsString(2);
+            //text = data.GetElementAsString(2);
             string stringToInt = data.GetElementAsString(2);
             int i;
             try

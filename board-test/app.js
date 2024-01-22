@@ -6,7 +6,7 @@ let currentTable;
 document.querySelector('#connect').onclick = () => {
     currentTable = document.querySelector('#tableId').value;
 
-    socket = new WebSocket('ws://localhost:8080');
+    socket = new WebSocket('ws://192.168.1.20:8080');
 
     socket.onmessage = ({ data }) => {
         console.log('Feedback from quiz: ', data);

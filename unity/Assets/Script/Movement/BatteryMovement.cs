@@ -60,8 +60,8 @@ public class BatteryMovement : MonoBehaviour
         {
             float minDistance = 60.0f; // La distance pour le volume maximal
             float maxDistance = 250.0f; // La distance pour le volume minimal
-            float minVolume = 0.1f; // Le volume minimal
-            float maxVolume = 1.0f; // Le volume maximal
+            float minVolume = 1.0f; // Le volume minimal
+            float maxVolume = 3.0f; // Le volume maximal
 
             if (distance <= minDistance)
             {

@@ -73,19 +73,19 @@ const App = () => {
                                     }
                                 });
                             }
-                        
+
                             const currentResponseOrder = Object.values(updatedResponses)
                                 .filter(response => response.answer === data.answer && response.tableId !== data.tableId)
                                 .length + 1;
-                        
+
                             updatedResponses[data.tableId] = {
                                 ...data,
                                 order: currentResponseOrder
                             };
-                        
+
                             return updatedResponses;
                         });
-                    }                                      
+                    }
                     break;
                 default:
                     console.error('Unrecognized message type:', data.type);
@@ -97,15 +97,15 @@ const App = () => {
 
     useEffect(() => {
         console.log("Table Responses Updated:", tableResponses);
-    }, [tableResponses]);    
+    }, [tableResponses]);
 
     useEffect(() => {
         console.log("question data:", questionData);
-    }, [questionData]); 
+    }, [questionData]);
 
     useEffect(() => {
         if (!competitionMode) {
-            const newSocket = new WebSocket('ws://localhost:8080');
+            const newSocket = new WebSocket('ws://192.168.1.20:8080');
             newSocket.onmessage = handleWebSocketMessages;
             newSocket.onopen = () => {
                 const delay = Math.floor(Math.random() * (20 + 1)) + 20;
@@ -163,14 +163,14 @@ const App = () => {
                 setIsWaiting(true);
                 setQuestionData({ question: '', answers: {} });
                 setTableResponses({}); // Ajouté pour réinitialiser les réponses
-    
+
                 const delay = Math.floor(Math.random() * (15 + 1)) + 20;
                 console.log('Excluding questions:', Array.from(askedQuestions));
 
                 setTimeout(() => {
                     if (socket && socket.readyState === WebSocket.OPEN) {
                         socket.send(JSON.stringify({
-                            type: 'requestQuestion', 
+                            type: 'requestQuestion',
                             exclude: Array.from(askedQuestions)
                         }));
                         console.log('Sending request with exclude:', Array.from(askedQuestions));
@@ -196,10 +196,10 @@ const App = () => {
                 <div>
                     <div className="content-container" style={{marginTop: '60px'}}>
                         <div className="media-container">
-                            <img 
-                                src={logoImage} 
-                                onClick={togglePlay} 
-                                className="music-logo" 
+                            <img
+                                src={logoImage}
+                                onClick={togglePlay}
+                                className="music-logo"
                                 alt="Play/Pause"
                             />
                             <audio ref={audioRef} src="musique.mp3" />
@@ -224,7 +224,7 @@ const App = () => {
                 </div>
             )}
         </div>
-    );       
+    );
 };
 
 export default App;
